@@ -35,7 +35,7 @@ class MainPage extends Component {
                     <AppHeader />
                 </View>
                 <Content>
-                <View_Page/>
+                    <View_Page/>
                 </Content>
                 <View>
                     <AppFooter style={style} />

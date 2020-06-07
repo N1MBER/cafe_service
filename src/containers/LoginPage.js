@@ -3,12 +3,13 @@ import { Text } from 'native-base';
 import {View} from 'native-base';
 
 import {connect} from 'react-redux';
+import LoginForm from '../components/LoginForm';
 class LoginPage extends Component {
     render() {
         const {style} = this.props;
         return (
             <View>
-                <Text>Login Page</Text>
+                <LoginForm/>
             </View>
         );
     }

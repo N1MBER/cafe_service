@@ -12,28 +12,29 @@ import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
+import {LOCATION, LOGIN, RESERVATION, SETTINGS} from '../store/values/app_values';
 
 class AppFooter extends Component {
     constructor(props){
         super(props);
     }
 
-    switch_page(page){
+    switch_page(page, name){
         switch (page) {
-            case "settings":
-                this.props.set_page_tittle('Settings');
+            case SETTINGS:
+                this.props.set_page_tittle(name);
                 this.props.set_page(SettingsPage);
                 break;
-            case "login":
-                this.props.set_page_tittle('Login');
+            case LOGIN:
+                this.props.set_page_tittle(name);
                 this.props.set_page(LoginPage);
                 break;
-            case "reservation":
-                this.props.set_page_tittle('Reservation');
+            case RESERVATION:
+                this.props.set_page_tittle(name);
                 this.props.set_page(ReservationPage);
                 break;
-            case "location":
-                this.props.set_page_tittle('Location');
+            case LOCATION:
+                this.props.set_page_tittle(name);
                 this.props.set_page(StartPage);
                 break;
         }
@@ -41,28 +42,28 @@ class AppFooter extends Component {
     }
 
     render() {
-        const {style} = this.props;
+        const {style, page} = this.props;
         return (
             <View>
                 <Footer >
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page("settings")
+                            this.switch_page(SETTINGS, page.names.header.tittle.settings)
                         }}>
                             <Icon name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page("reservation")
+                            this.switch_page(RESERVATION, page.names.header.tittle.reservation)
                         }}>
                             <Icon name='ios-today'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page("location")
+                            this.switch_page(LOCATION, page.names.header.tittle.location)
                         }}>
                             <Icon name='map'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page("login")
+                            this.switch_page(LOGIN, page.names.header.tittle.login)
                         }}>
                             <Icon name='md-person'/>
                         </Button>
@@ -76,7 +77,8 @@ class AppFooter extends Component {
 
 const mapStateToProps = store => {
     return {
-        style: store.style
+        style: store.style,
+        page: store.page
     }
 };
 

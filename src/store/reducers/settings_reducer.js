@@ -7,12 +7,10 @@ import {app_values} from '../values/app_values';
 
 
 const  initialState = {
-    header_name: app_values.header.tittle.cafe,
-    page: StartPage,
-    names: app_values
+    language: 'ru'
 };
 
-export function tittle_reducer(state = initialState, action) {
+export function settings_reducer(state = initialState, action) {
     switch (action.type) {
         case SET_PAGE_TITTLE:
             return {...state, header_name: action.payload};

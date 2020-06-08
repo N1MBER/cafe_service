@@ -4,12 +4,18 @@ import {View} from 'native-base';
 
 import {connect} from 'react-redux';
 import LoginForm from '../components/LoginForm';
+import IconMapper from '../components/IconMapper';
 class LoginPage extends Component {
     render() {
-        const {style} = this.props;
+        const {style, page} = this.props;
         return (
             <View>
-                <LoginForm/>
+                <View>
+                    <IconMapper />
+                </View>
+                <View>
+                    <LoginForm/>
+                </View>
             </View>
         );
     }

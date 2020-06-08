@@ -6,6 +6,7 @@ import {
     Input,
     Form
 }from 'native-base';
+import { View, Image, StyleSheet } from 'react-native';
 import { Container, Header, Icon } from 'native-base';
 
 export default class IconMapper extends Component {
@@ -13,11 +14,7 @@ export default class IconMapper extends Component {
         const {style} = this.props;
         return (
             <Container>
-                <Content>
-                    <Icon name='home' />
-                    <Icon ios='ios-menu' android="md-menu" style={{fontSize: 20, color: 'red'}}/>
-                    <Icon type="FontAwesome" name="home" />
-                </Content>
+                <Image style={{width: 100, height: 100}} source={require('../images/icons/user.png')} />
             </Container>
         );
     }

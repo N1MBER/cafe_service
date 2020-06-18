@@ -25,4 +25,4 @@ export const MENU = [
 ];
 
 export const POSITION = ['COFFEE','TEA','DESSERT','MINI BITES'];
-export const ICONS = ['ios-cafe','ios-color-fill','ios-ice-cream','piiza'];
+export const ICONS = ['ios-cafe','ios-color-fill','ios-ice-cream','pizza'];

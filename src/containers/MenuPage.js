@@ -14,24 +14,28 @@ import {
 } from 'native-base'
 import {ICONS, POSITION} from '../store/values/cafe_menu';
 import {MENU} from '../store/values/cafe_menu';
+import { Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+
 class MenuPage extends Component {
     render() {
         const {page} = this.props;
         return (
             <View style={styles.container}>
-                <List>
+                <List style={styles.list}>
                     {POSITION.map((item, key)=>(
-                        <View>
-                            <ListItem itemDivider>
-                                <Icon name={ICONS[key]}/>
-                                <Text key={key}> { item } </Text>
+                        <View >
+                            <ListItem itemDivider style={styles.title_container}>
+                                <Icon name={ICONS[key]} style={styles.title_icon}/>
+                                <Text key={key} style={styles.title_text}> { item } </Text>
                             </ListItem>
                             {MENU[key] != undefined ?
                                 MENU[key].map((element, op)=>(
-                                        <ListItem>
-                                            <Icon name={'ios-color-filter'}/>
-                                            <Text key={op}> { element[0] } </Text>
-                                            <Text key={op}> { element[1].toFixed(2) } </Text>
+                                        <ListItem style={styles.content}>
+                                            <Icon name={'ios-color-filter'} style={styles.content_icon}/>
+                                            <Text key={op} style={styles.content_text}> { element[0] } </Text>
+                                            <Text key={op } style={styles.content_price}> { element[1].toFixed(2) } $</Text>
                                         </ListItem>)
                                     ) :
                                 <View/>
@@ -48,33 +52,57 @@ class MenuPage extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 40,
+        width: windowWidth,
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center'
     },
-    inside_container: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 12,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 16.00,
+    list:{
+        width: windowWidth,
+        marginTop: 0
+    },
+    title_container: {
+        flexDirection: 'row',
+        flex: 1,
+       backgroundColor: AppStyle.colors.blue_gray,
+       shadowColor: "#000",
+       shadowOffset: {
+           width: 0,
+           height: 5,
+       },
+       shadowOpacity: 0.38,
+       shadowRadius: 6.00,
 
-        elevation: 24,
-        width: '80%',
-        flex: 8,
-        flexBasis: 400,
-        paddingTop: 50,
-        paddingBottom: 10,
-        backgroundColor: AppStyle.colors.violet,
-        alignItems: 'center',
-        borderRadius: 50
+       elevation: 14,
+   },
+   title_icon: {
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 25,
+       paddingRight: 10
+   },
+    title_text:{
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 25,
+        fontWeight: 'bold'
     },
-    logo: {
-        width: 200,
-        height: 200,
+    content: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+    content_icon: {
+        flex: 0.8,
+        fontSize: 20,
+        color: 'rgba(255,255,255,0.8)'
+    },
+    content_text: {
+        flex: 4,
+        fontSize: 18,
+        color: 'rgba(255,255,255,0.8)'
+    },
+    content_price: {
+        flex: 1.4,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'rgba(255,255,255,0.8)'
     },
 });
 

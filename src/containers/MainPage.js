@@ -10,6 +10,7 @@ import LoginPage from './LoginPage';
 import ReservationPage from './ReservationPage';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import MenuPage from './MenuPage';
 
 
 
@@ -29,6 +30,9 @@ class MainPage extends Component {
                 break;
             case ReservationPage:
                 View_Page = ReservationPage;
+                break;
+            case MenuPage:
+                View_Page = MenuPage;
                 break;
             default:
                 View_Page = StartPage;

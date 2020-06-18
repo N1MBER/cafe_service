@@ -4,6 +4,7 @@ export const LOGIN = 'LOGIN';
 export const REGISTER = 'REGISTER';
 export const CAFE = 'CAFE';
 export const LOCATION = 'LOCATION';
+export const MENU = 'MENU';
 
 
 
@@ -15,7 +16,8 @@ export const app_values = {
             login: 'Sign in',
             register: 'Registration',
             reservation: 'Reservation',
-            location: 'Map'
+            location: 'Map',
+            menu: 'Menu'
         }
     },
     login_page:{

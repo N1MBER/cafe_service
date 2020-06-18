@@ -12,9 +12,10 @@ import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
-import {LOCATION, LOGIN, RESERVATION, SETTINGS} from '../store/values/app_values';
+import {LOCATION, LOGIN, MENU, RESERVATION, SETTINGS} from '../store/values/app_values';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import MenuPage from '../containers/MenuPage';
 
 class AppFooter extends Component {
     constructor(props){
@@ -35,9 +36,9 @@ class AppFooter extends Component {
                 this.props.set_page_tittle(name);
                 this.props.set_page(ReservationPage);
                 break;
-            case LOCATION:
+            case MENU:
                 this.props.set_page_tittle(name);
-                this.props.set_page(StartPage);
+                this.props.set_page(MenuPage);
                 break;
         }
 
@@ -50,14 +51,14 @@ class AppFooter extends Component {
                 <Footer style={styles.container}>
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page(LOGIN, page.values.header.tittle.login)
+                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
                         }}>
-                            <Icon style={styles.icon} name='md-person'/>
+                            <Icon style={styles.icon} name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(LOCATION, page.values.header.tittle.location)
+                            this.switch_page(MENU, page.values.header.tittle.menu)
                         }}>
-                            <Icon style={styles.icon} name='map'/>
+                            <Icon style={styles.icon} name='restaurant'/>
                         </Button>
                         <Button onPress={() => {
                             this.switch_page(RESERVATION, page.values.header.tittle.reservation)
@@ -65,9 +66,9 @@ class AppFooter extends Component {
                             <Icon style={styles.icon} name='ios-today'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
+                            this.switch_page(LOGIN, page.values.header.tittle.login)
                         }}>
-                            <Icon style={styles.icon} name='settings'/>
+                            <Icon style={styles.icon} name='md-person'/>
                         </Button>
                     </FooterTab>
                 </Footer>

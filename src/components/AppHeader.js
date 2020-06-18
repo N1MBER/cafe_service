@@ -22,7 +22,8 @@ class AppHeader extends Component {
                 <Header style={styles.container} >
                     <Left >
                         <Button transparent>
-                            <Icon style={styles.icon} name='menu' />
+
+                            <Icon style={styles.icon} name='arrow-back' />
                         </Button>
                     </Left>
                     <Body>

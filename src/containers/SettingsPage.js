@@ -12,7 +12,12 @@ import {
 
 import {connect} from 'react-redux';
 import {CITIES, LANGUAGES} from '../store/values/settings_values';
-import {set_default_city, set_language} from '../actions/settings_manager';
+import {
+    set_default_city,
+    set_language,
+    set_new_position_notification,
+    set_reservation_notification,
+} from '../actions/settings_manager';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
@@ -27,13 +32,17 @@ class SettingsPage extends Component {
                     </View>
                     <View>
                         <ListItem>
-                            <CheckBox  />
+                            <CheckBox onPress={()=> {
+                                this.props.set_reservation_notification(!Boolean(settings.reservation_notification))
+                            }} checked={settings.reservation_notification}/>
                             <Body>
                                 <Text>Reservation notification</Text>
                             </Body>
                         </ListItem>
                         <ListItem>
-                            <CheckBox  />
+                            <CheckBox onPress={()=> {
+                                this.props.set_new_position_notification(!Boolean(settings.new_position_notification))
+                            }} checked={settings.new_position_notification}/>
                             <Body>
                                 <Text>Notification of new positions</Text>
                             </Body>
@@ -146,7 +155,10 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch =>{
     return{
         set_default_city: city => dispatch(set_default_city(city)),
-        set_language: language => dispatch(set_language(language))
+        set_language: language => dispatch(set_language(language)),
+        set_new_position_notification: value => dispatch(set_new_position_notification(value)),
+        set_reservation_notification: value => dispatch(set_reservation_notification(value))
+
     }
 };
 

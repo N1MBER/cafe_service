@@ -5,13 +5,20 @@ import {
 import StartPage from '../../containers/StartPage';
 import {app_values} from '../values/app_values';
 import {settings_values} from '../values/settings_values';
-import {SET_DEFAULT_CITY, SET_LANGUAGE} from '../../actions/settings_manager';
+import {
+    NEW_POSITION_NOTIFICATION,
+    RESERVATION_NOTIFICATION,
+    SET_DEFAULT_CITY,
+    SET_LANGUAGE,
+} from '../../actions/settings_manager';
 
 
 const  initialState = {
     language: 'English',
     default_city: 'Saint-Petersburg',
-    cities: settings_values
+    cities: settings_values,
+    reservation_notification: true,
+    new_position_notification: true
 };
 
 export function settings_reducer(state = initialState, action) {
@@ -20,6 +27,10 @@ export function settings_reducer(state = initialState, action) {
             return {...state, default_city: action.payload};
         case  SET_LANGUAGE:
             return {...state, language: action.payload};
+        case RESERVATION_NOTIFICATION:
+            return {...state, reservation_notification: action.payload}
+        case NEW_POSITION_NOTIFICATION:
+            return {...state, new_position_notification: action.payload}
         default:
             return state
     }

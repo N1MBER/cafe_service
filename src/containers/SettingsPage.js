@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 
 import {connect} from 'react-redux';
-import {CITIES} from '../store/values/settings_values';
+import {CITIES, LANGUAGES} from '../store/values/settings_values';
 import {set_default_city, set_language} from '../actions/settings_manager';
 class SettingsPage extends Component {
     render() {
@@ -50,9 +50,10 @@ class SettingsPage extends Component {
                             ActionSheet.show({
                                 options: CITIES,
                                 title: 'Default city',
-                                cancelButtonIndex: 3
+                                cancelButtonIndex: CITIES.length - 1
                             },
                                 buttonIndex => {
+                                if(buttonIndex != CITIES.length - 1)
                                     this.props.set_default_city( CITIES[buttonIndex] );
                                 }
                                 )}>
@@ -70,9 +71,24 @@ class SettingsPage extends Component {
                         </ListItem>
                     </View>
                     <View>
-                        <ListItem>
-                            <Text>Sample text</Text>
-                        </ListItem>
+                        <Root>
+                            <ListItem onPress={()=>
+                                ActionSheet.show({
+                                        options: LANGUAGES,
+                                        title: 'Language',
+                                        cancelButtonIndex: LANGUAGES.length - 1
+                                    },
+                                    buttonIndex => {
+                                        if(buttonIndex != LANGUAGES.length - 1)
+                                            this.props.set_language( LANGUAGES[buttonIndex] );
+                                    }
+                                )}>
+                                <View >
+                                    <Text>Language: </Text>
+                                    <Text>{settings.language}</Text>
+                                </View>
+                            </ListItem>
+                        </Root>
                     </View>
                     <View>
                         <ListItem itemDivider>

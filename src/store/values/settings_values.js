@@ -4,4 +4,5 @@ export const settings_values = {
     ivn: 'Ivanovo',
     kzn: 'Kazan\''
 };
-export const CITIES = ['Saint-Petersburg','Moscow','Ivanovo','Kazan\'','Cancel'];
+export const CITIES = ['None','Saint-Petersburg','Moscow','Ivanovo','Kazan\'','Cancel'];
+export const LANGUAGES = ['Русский', 'English', 'Deutsch', '中文', 'Cancel']

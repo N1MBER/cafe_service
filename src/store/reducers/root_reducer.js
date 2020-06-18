@@ -6,7 +6,6 @@ import {style_reducer} from "./style_reducer";
 import {tittle_reducer} from './tittle_reducer';
 
 export const rootReducer = combineReducers({
-    style: style_reducer,
     page: tittle_reducer,
     // user: userReducer,
     // header: headerReducer

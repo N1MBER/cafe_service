@@ -6,6 +6,8 @@ import {
     Button,
     Icon, Left, Body, Title, Right,
 } from 'native-base';
+import LinearGradient from 'react-native-linear-gradient';
+import {StyleSheet} from 'react-native';
 
 class AppHeader extends Component {
     constructor(props){
@@ -13,17 +15,17 @@ class AppHeader extends Component {
     }
 
     render() {
-        const {style, page} = this.props;
+        const { page} = this.props;
         return (
             <View>
-                <Header >
-                    <Left>
+                <Header style={styles.container} >
+                    <Left >
                         <Button transparent>
-                            <Icon name='menu' />
+                            <Icon style={styles.icon} name='menu' />
                         </Button>
                     </Left>
                     <Body>
-                        <Title>{page.header_name}</Title>
+                        <Title style={styles.text}>{page.header_name}</Title>
                     </Body>
                     <Right />
                 </Header>
@@ -32,9 +34,28 @@ class AppHeader extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor: '#50514f',
+        flexDirection: 'row'
+    },
+    text: {
+        color: 'rgba(255,255,255,0.8)',
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    button: {
+        flex: 0.2
+    },
+    icon: {
+        color: 'rgba(255,255,255,0.8)',
+        padding: 10
+    }
+});
+
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };

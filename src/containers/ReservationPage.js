@@ -5,7 +5,6 @@ import {View} from 'native-base';
 import {connect} from 'react-redux';
 class ReservationPage extends Component {
     render() {
-        const {style} = this.props;
         return (
             <View>
                 <Text>Reservation Page</Text>
@@ -16,7 +15,6 @@ class ReservationPage extends Component {
 
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };

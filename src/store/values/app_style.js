@@ -3,5 +3,13 @@ export const AppStyle = {
         icon:{
            fontSize: 50
         }
+    },
+    login_page:{
+        icon:{
+            width: 100
+        },
+        form:{
+
+        }
     }
 };

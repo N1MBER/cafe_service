@@ -8,9 +8,13 @@ import StartPage from './StartPage';
 import SettingsPage from './SettingsPage';
 import LoginPage from './LoginPage';
 import ReservationPage from './ReservationPage';
+import {StyleSheet} from 'react-native';
+
+
+
 class MainPage extends Component {
     render() {
-        const {style, page} = this.props;
+        const { page} = this.props;
         let View_Page = null;
         switch (page.page) {
             case StartPage:
@@ -29,26 +33,33 @@ class MainPage extends Component {
                 View_Page = StartPage;
                 break;
         }
+
+
         return (
-            <Container>
+            <Container >
                 <View>
                     <AppHeader />
                 </View>
-                <Content>
+                <Content style={styles.content}>
                     <View_Page/>
                 </Content>
                 <View>
-                    <AppFooter style={style} />
+                    <AppFooter />
                 </View>
             </Container>
         );
     }
 }
 
+const styles = StyleSheet.create({
+    content:{
+        flex: 1,
+        backgroundColor: '#70c1b3'
+    }
+});
 
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };

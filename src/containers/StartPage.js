@@ -3,14 +3,16 @@ import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Rig
 import {ScrollView} from 'react-native'
 import {View} from 'native-base';
 import {connect} from 'react-redux';
+import {StyleSheet} from 'react-native';
 import {
     LearnMoreLinks,
     DebugInstructions,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import LinearGradient from 'react-native-linear-gradient';
 class StartPage extends Component {
     render() {
-        const {style} = this.props;
+        const {page} = this.props;
         return (
             <Content>
                 <View style={{backgroundColor: 'red',
@@ -55,10 +57,25 @@ class StartPage extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
+});
 
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };

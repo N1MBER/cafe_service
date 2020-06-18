@@ -1,29 +1,55 @@
 import React, { Component } from 'react';
-import { Text } from 'native-base';
-import {View} from 'native-base';
-
+import {
+    View,
+    Image,
+    StyleSheet,
+    Text
+} from 'react-native';
 import {connect} from 'react-redux';
 import LoginForm from '../components/LoginForm';
-import IconMapper from '../components/IconMapper';
 class LoginPage extends Component {
     render() {
-        const {style, page} = this.props;
+        const {page} = this.props;
         return (
-            <View>
-                <View>
-                    <IconMapper />
+            <View style={styles.container}>
+                <View style={{flex: 1, flexBasis: 200}}/>
+                <View style={styles.inside_container}>
+                    <Image style={styles.logo}  source={require('../images/icons/user.png')} />
+                    <LoginForm />
                 </View>
-                <View>
-                    <LoginForm/>
-                </View>
+                <View style={{flex: 1, flexBasis: 200}}/>
             </View>
         );
     }
 }
 
+
+const styles = StyleSheet.create({
+    container: {
+        paddingTop: 40,
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    inside_container: {
+        width: '80%',
+        flex: 8,
+        flexBasis: 400,
+        paddingTop: 50,
+        paddingBottom: 10,
+        backgroundColor: '#ffe066',
+        alignItems: 'center',
+        borderRadius: 50
+    },
+    logo: {
+        width: 200,
+        height: 200,
+    },
+});
+
+
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };

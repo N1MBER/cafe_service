@@ -13,6 +13,7 @@ import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
 import {LOCATION, LOGIN, RESERVATION, SETTINGS} from '../store/values/app_values';
+import {StyleSheet} from 'react-native';
 
 class AppFooter extends Component {
     constructor(props){
@@ -42,30 +43,30 @@ class AppFooter extends Component {
     }
 
     render() {
-        const {style, page} = this.props;
+        const {page} = this.props;
         return (
             <View>
-                <Footer >
+                <Footer style={styles.container}>
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page(SETTINGS, page.names.header.tittle.settings)
+                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
                         }}>
-                            <Icon name='settings'/>
+                            <Icon style={styles.icon} name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(RESERVATION, page.names.header.tittle.reservation)
+                            this.switch_page(RESERVATION, page.values.header.tittle.reservation)
                         }}>
-                            <Icon name='ios-today'/>
+                            <Icon style={styles.icon} name='ios-today'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(LOCATION, page.names.header.tittle.location)
+                            this.switch_page(LOCATION, page.values.header.tittle.location)
                         }}>
-                            <Icon name='map'/>
+                            <Icon style={styles.icon} name='map'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(LOGIN, page.names.header.tittle.login)
+                            this.switch_page(LOGIN, page.values.header.tittle.login)
                         }}>
-                            <Icon name='md-person'/>
+                            <Icon style={styles.icon} name='md-person'/>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -77,7 +78,6 @@ class AppFooter extends Component {
 
 const mapStateToProps = store => {
     return {
-        style: store.style,
         page: store.page
     }
 };
@@ -89,5 +89,14 @@ const mapDispatchToProps = dispatch =>{
     }
 };
 
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor: '#50514f',
+        flexDirection: 'row'
+    },
+    icon: {
+        color: 'rgba(255,255,255,0.8)'
+    }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppFooter)

@@ -10,12 +10,23 @@ export const LOCATION = 'LOCATION';
 export const app_values = {
     header:{
         tittle:{
-            cafe: 'Кофейня',
-            settings: 'Настройки',
-            login: 'Вход',
-            register: 'Регистрация',
-            reservation: 'Бронирование',
-            location: 'Расположение'
+            cafe: 'Cafeteria',
+            settings: 'Settings',
+            login: 'Sign in',
+            register: 'Registration',
+            reservation: 'Reservation',
+            location: 'Map'
+        }
+    },
+    login_page:{
+        registration: 'SIGN UP',
+        forgot: 'FORGOT PASSWORD?',
+        other_variant: 'Sign in with social networks',
+        login: 'LOG IN'
+    },
+    icon:{
+        login_page: {
+            person: '../images/icons/user.png',
         }
     }
 };

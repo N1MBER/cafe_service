@@ -8,6 +8,7 @@ import {
 import {connect} from 'react-redux';
 import LoginForm from '../components/LoginForm';
 import {AppStyle} from '../store/values/app_style';
+import {Icon} from 'native-base'
 class LoginPage extends Component {
     render() {
         const {page} = this.props;
@@ -15,7 +16,8 @@ class LoginPage extends Component {
             <View style={styles.container}>
                 <View style={{flex: 1, flexBasis: 200}}/>
                 <View style={styles.inside_container}>
-                    <Image style={styles.logo}  source={require('../images/icons/user.png')} />
+                    <Icon style={{fontSize: 300}} name={'logo-octocat'}/>
+                    {/*<Image style={styles.logo}  source={require('../images/icons/user.png')} />*/}
                     <LoginForm />
                 </View>
                 <View style={{flex: 1, flexBasis: 200}}/>
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
         flexBasis: 400,
         paddingTop: 50,
         paddingBottom: 10,
-        backgroundColor: AppStyle.colors.yellow,
+        backgroundColor: AppStyle.colors.violet,
         alignItems: 'center',
         borderRadius: 50
     },

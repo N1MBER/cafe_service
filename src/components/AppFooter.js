@@ -50,14 +50,9 @@ class AppFooter extends Component {
                 <Footer style={styles.container}>
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
+                            this.switch_page(LOGIN, page.values.header.tittle.login)
                         }}>
-                            <Icon style={styles.icon} name='settings'/>
-                        </Button>
-                        <Button onPress={() => {
-                            this.switch_page(RESERVATION, page.values.header.tittle.reservation)
-                        }}>
-                            <Icon style={styles.icon} name='ios-today'/>
+                            <Icon style={styles.icon} name='md-person'/>
                         </Button>
                         <Button onPress={() => {
                             this.switch_page(LOCATION, page.values.header.tittle.location)
@@ -65,9 +60,14 @@ class AppFooter extends Component {
                             <Icon style={styles.icon} name='map'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(LOGIN, page.values.header.tittle.login)
+                            this.switch_page(RESERVATION, page.values.header.tittle.reservation)
                         }}>
-                            <Icon style={styles.icon} name='md-person'/>
+                            <Icon style={styles.icon} name='ios-today'/>
+                        </Button>
+                        <Button onPress={() => {
+                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
+                        }}>
+                            <Icon style={styles.icon} name='settings'/>
                         </Button>
                     </FooterTab>
                 </Footer>

@@ -38,7 +38,8 @@ class AppHeader extends Component {
 const styles = StyleSheet.create({
     container:{
         backgroundColor: AppStyle.colors.gray,
-        flexDirection: 'row'
+        flexDirection: 'row',
+
     },
     text: {
         color: 'rgba(255,255,255,0.8)',

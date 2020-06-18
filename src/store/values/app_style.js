@@ -22,6 +22,7 @@ export const AppStyle = {
         pink: '#f67280',
         peach: '#f8b195',
         dark_pink: '#c06c84',
-        purple: '#6c5b7b'
+        purple: '#6c5b7b',
+        violet: '#c0b2b2'
     }
 };

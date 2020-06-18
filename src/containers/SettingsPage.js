@@ -153,6 +153,15 @@ const styles = StyleSheet.create({
     },
     item_title:{
         backgroundColor: AppStyle.colors.blue_gray,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.38,
+        shadowRadius: 6.00,
+
+        elevation: 14,
     },
     title_text:{
         fontWeight: 'bold',

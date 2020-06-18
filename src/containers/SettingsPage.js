@@ -18,16 +18,18 @@ import {
     set_new_position_notification,
     set_reservation_notification,
 } from '../actions/settings_manager';
+import {StyleSheet} from 'react-native';
+import {AppStyle} from '../store/values/app_style';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
 
         return (
-            <View>
+            <View style={styles.container}>
                 <List>
                     <View>
-                        <ListItem itemDivider>
-                            <Text>{page.values.settings_page.notification}</Text>
+                        <ListItem itemDivider style={styles.item_title}>
+                            <Text style={styles.title_text} >{page.values.settings_page.notification}</Text>
                         </ListItem>
                     </View>
                     <View>
@@ -36,7 +38,7 @@ class SettingsPage extends Component {
                                 this.props.set_reservation_notification(!Boolean(settings.reservation_notification))
                             }} checked={settings.reservation_notification}/>
                             <Body>
-                                <Text>Reservation notification</Text>
+                                <Text style={styles.text} >Reservation notification</Text>
                             </Body>
                         </ListItem>
                         <ListItem>
@@ -44,14 +46,14 @@ class SettingsPage extends Component {
                                 this.props.set_new_position_notification(!Boolean(settings.new_position_notification))
                             }} checked={settings.new_position_notification}/>
                             <Body>
-                                <Text>Notification of new positions</Text>
+                                <Text style={styles.text} >Notification of new positions</Text>
                             </Body>
                         </ListItem>
                     </View>
 
                     <View>
-                        <ListItem itemDivider>
-                            <Text>{page.values.settings_page.default_city}</Text>
+                        <ListItem itemDivider style={styles.item_title}>
+                            <Text style={styles.title_text} >{page.values.settings_page.default_city}</Text>
                         </ListItem>
                     </View>
                     <View>
@@ -67,17 +69,17 @@ class SettingsPage extends Component {
                                     this.props.set_default_city( CITIES[buttonIndex] );
                                 }
                                 )}>
-                            <View >
-                                <Text>Default city: </Text>
-                                <Text>{settings.default_city}</Text>
+                            <View style={styles.item_container}>
+                                <Text style={styles.item}>Default city: </Text>
+                                <Text style={styles.item}>{settings.default_city}</Text>
                             </View>
                         </ListItem>
                         </Root>
                     </View>
 
                     <View>
-                        <ListItem itemDivider>
-                            <Text>{page.values.settings_page.language}</Text>
+                        <ListItem itemDivider style={styles.item_title}>
+                            <Text style={styles.title_text} >{page.values.settings_page.language}</Text>
                         </ListItem>
                     </View>
                     <View>
@@ -93,57 +95,83 @@ class SettingsPage extends Component {
                                             this.props.set_language( LANGUAGES[buttonIndex] );
                                     }
                                 )}>
-                                <View >
-                                    <Text>Language: </Text>
-                                    <Text>{settings.language}</Text>
+                                <View style={styles.item_container}>
+                                    <Text style={styles.item}>Language: </Text>
+                                    <Text style={styles.item}>{settings.language}</Text>
                                 </View>
                             </ListItem>
                         </Root>
                     </View>
                     <View>
-                        <ListItem itemDivider>
-                            <Text>{page.values.settings_page.support}</Text>
+                        <ListItem itemDivider style={styles.item_title}>
+                            <Text style={styles.title_text}>{page.values.settings_page.support}</Text>
                         </ListItem>
                     </View>
                     <View>
                         <ListItem>
-                            <Text>Report an error</Text>
+                            <Text style={styles.text}>Report an error</Text>
                         </ListItem>
                         <ListItem>
-                            <Text>Ask a Question</Text>
+                            <Text style={styles.text}>Ask a Question</Text>
+                        </ListItem>
+                    </View>
+                    <View style={styles.item_title}>
+                        <ListItem itemDivide r>
+                            <Text style={styles.title_text}>{page.values.settings_page.about_us}</Text>
                         </ListItem>
                     </View>
                     <View>
-                        <ListItem itemDivider>
-                            <Text>{page.values.settings_page.about_us}</Text>
-                        </ListItem>
-                    </View>
-                    <View>
                         <ListItem>
-                            <View>
-                                <Text>Technology for app </Text>
-                                <Text>React Native</Text>
+                            <View style={styles.item_container}>
+                                <Text style={styles.item}>Technology for app </Text>
+                                <Text style={styles.item}>React Native</Text>
                             </View>
                         </ListItem>
                         <ListItem>
-                            <View>
-                                <Text>Developer</Text>
-                                <Text>N1MBER</Text>
+                            <View style={styles.item_container}>
+                                <Text style={styles.item}>Developer</Text>
+                                <Text style={styles.item}>N1MBER</Text>
                             </View>
                         </ListItem>
                         <ListItem>
-                            <View>
-                                <Text>Version</Text>
-                                <Text>0.0.2</Text>
+                            <View style={styles.item_container}>
+                                <Text style={styles.item}>Version</Text>
+                                <Text style={styles.item}>0.0.2</Text>
                             </View>
                         </ListItem>
                     </View>
                 </List>
-                <Text>Designed by N1MBER in St. Peterspurg</Text>
+                <Text style={{paddingTop:30,paddingBottom:30,color: 'white', textAlign: 'center'}}>Designed by N1MBER in St. Peterspurg</Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor: AppStyle.colors.purple,
+    },
+    item_title:{
+        backgroundColor: AppStyle.colors.blue_gray,
+    },
+    title_text:{
+        fontWeight: 'bold',
+        fontSize: 18,
+        fontFamily: 'Arial',
+        color: 'white'
+    },
+    text:{
+        color: 'white'
+    },
+    item_container: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    item: {
+        flex: 1,
+        color: 'white'
+    }
+});
 
 const mapStateToProps = store => {
     return {

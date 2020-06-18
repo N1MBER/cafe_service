@@ -9,6 +9,7 @@ import SettingsPage from './SettingsPage';
 import LoginPage from './LoginPage';
 import ReservationPage from './ReservationPage';
 import {StyleSheet} from 'react-native';
+import {AppStyle} from '../store/values/app_style';
 
 
 
@@ -54,7 +55,7 @@ class MainPage extends Component {
 const styles = StyleSheet.create({
     content:{
         flex: 1,
-        backgroundColor: '#70c1b3'
+        backgroundColor: AppStyle.colors.aquamarine
     }
 });
 

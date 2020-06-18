@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import LoginForm from '../components/LoginForm';
+import {AppStyle} from '../store/values/app_style';
 class LoginPage extends Component {
     render() {
         const {page} = this.props;
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         flexBasis: 400,
         paddingTop: 50,
         paddingBottom: 10,
-        backgroundColor: '#ffe066',
+        backgroundColor: AppStyle.colors.yellow,
         alignItems: 'center',
         borderRadius: 50
     },

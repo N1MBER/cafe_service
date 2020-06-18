@@ -10,6 +10,7 @@ import {
 }from 'react-native';
 
 import {connect} from 'react-redux';
+import {AppStyle} from '../store/values/app_style';
 class LoginButton extends Component {
     render() {
         const {page} = this.props;
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
         flex: 2,
         textAlign: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f25f5c',
+        backgroundColor: AppStyle.colors.red,
         borderRadius: 40
     },
     container: {

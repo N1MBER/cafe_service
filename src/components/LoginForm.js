@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     },
     input_container:{
         width: '80%',
-        // backgroundColor: 'rgba(10,10,10,0.7)',
         opacity: 0.8,
         alignContent: 'center',
         color: 'white'

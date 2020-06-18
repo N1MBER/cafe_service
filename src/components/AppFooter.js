@@ -14,6 +14,7 @@ import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
 import {LOCATION, LOGIN, RESERVATION, SETTINGS} from '../store/values/app_values';
 import {StyleSheet} from 'react-native';
+import {AppStyle} from '../store/values/app_style';
 
 class AppFooter extends Component {
     constructor(props){
@@ -91,7 +92,7 @@ const mapDispatchToProps = dispatch =>{
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#50514f',
+        backgroundColor: AppStyle.colors.gray,
         flexDirection: 'row'
     },
     icon: {

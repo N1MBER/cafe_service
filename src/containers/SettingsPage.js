@@ -7,7 +7,7 @@ import {
     CheckBox,
     Body,
     ActionSheet,
-    Root
+    Root,
 } from 'native-base';
 
 import {connect} from 'react-redux';
@@ -16,6 +16,7 @@ import {set_default_city, set_language} from '../actions/settings_manager';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
+
         return (
             <View>
                 <List>
@@ -97,7 +98,10 @@ class SettingsPage extends Component {
                     </View>
                     <View>
                         <ListItem>
-                            <Text>Sample text</Text>
+                            <Text>Report an error</Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text>Ask a Question</Text>
                         </ListItem>
                     </View>
                     <View>
@@ -107,10 +111,26 @@ class SettingsPage extends Component {
                     </View>
                     <View>
                         <ListItem>
-                            <Text>Sample text</Text>
+                            <View>
+                                <Text>Technology for app </Text>
+                                <Text>React Native</Text>
+                            </View>
+                        </ListItem>
+                        <ListItem>
+                            <View>
+                                <Text>Developer</Text>
+                                <Text>N1MBER</Text>
+                            </View>
+                        </ListItem>
+                        <ListItem>
+                            <View>
+                                <Text>Version</Text>
+                                <Text>0.0.2</Text>
+                            </View>
                         </ListItem>
                     </View>
                 </List>
+                <Text>Designed by N1MBER in St. Peterspurg</Text>
             </View>
         );
     }

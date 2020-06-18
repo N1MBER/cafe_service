@@ -8,6 +8,7 @@ import {
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
+import {AppStyle} from '../store/values/app_style';
 
 class AppHeader extends Component {
     constructor(props){
@@ -36,7 +37,7 @@ class AppHeader extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#50514f',
+        backgroundColor: AppStyle.colors.gray,
         flexDirection: 'row'
     },
     text: {

@@ -24,6 +24,14 @@ export const app_values = {
         other_variant: 'Sign in with social networks',
         login: 'LOG IN'
     },
+    settings_page:{
+        language: 'Language',
+        notification: 'Notification',
+        about_us: 'About us',
+        support: 'Support',
+        default_city: 'Default city'
+
+    },
     icon:{
         login_page: {
             person: '../images/icons/user.png',

@@ -32,6 +32,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     inside_container: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+
+        elevation: 24,
         width: '80%',
         flex: 8,
         flexBasis: 400,

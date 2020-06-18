@@ -7,7 +7,8 @@ import {app_values} from '../values/app_values';
 
 
 const  initialState = {
-    language: 'ru'
+    language: 'ru',
+
 };
 
 export function settings_reducer(state = initialState, action) {

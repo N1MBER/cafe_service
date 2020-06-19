@@ -9,6 +9,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import {get_title, set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import MenuPage from '../containers/MenuPage';
 
 class AppHeader extends Component {
     constructor(props){
@@ -21,8 +23,10 @@ class AppHeader extends Component {
             <View>
                 <Header style={styles.container} >
                     <Left >
-                        <Button transparent>
-
+                        <Button transparent onPress={() => {
+                            this.props.set_page(page.previous_page);
+                            this.props.set_page_tittle(get_title(page.previous_page))
+                        }}>
                             <Icon style={styles.icon} name='arrow-back' />
                         </Button>
                     </Left>
@@ -63,5 +67,12 @@ const mapStateToProps = store => {
     }
 };
 
+const mapDispatchToProps = dispatch =>{
+    return{
+        set_previous_page: page => dispatch(set_previous_page(page)),
+        set_page: page => dispatch(set_page(page)),
+        set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
+    }
+};
 
-export default connect(mapStateToProps)(AppHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader)

@@ -7,7 +7,7 @@ import {
     Button,
     Icon,
 } from 'native-base';
-import {set_page, set_page_tittle} from '../actions/tittle_manager';
+import {set_page, set_page_tittle,set_previous_page} from '../actions/tittle_manager';
 import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
@@ -22,7 +22,10 @@ class AppFooter extends Component {
         super(props);
     }
 
-    switch_page(page, name){
+    switch_page(page, name, header, prev_page){
+        if (name != header){
+            this.props.set_previous_page(prev_page)
+        }
         switch (page) {
             case SETTINGS:
                 this.props.set_page_tittle(name);
@@ -51,22 +54,22 @@ class AppFooter extends Component {
                 <Footer style={styles.container}>
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page(SETTINGS, page.values.header.tittle.settings)
+                            this.switch_page(SETTINGS, page.values.header.tittle.settings, page.header_name, page.page)
                         }}>
                             <Icon style={styles.icon} name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(MENU, page.values.header.tittle.menu)
+                            this.switch_page(MENU, page.values.header.tittle.menu, page.header_name, page.page)
                         }}>
                             <Icon style={styles.icon} name='restaurant'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(RESERVATION, page.values.header.tittle.reservation)
+                            this.switch_page(RESERVATION, page.values.header.tittle.reservation, page.header_name, page.page)
                         }}>
                             <Icon style={styles.icon} name='ios-today'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(LOGIN, page.values.header.tittle.login)
+                            this.switch_page(LOGIN, page.values.header.tittle.login, page.header_name, page.page)
                         }}>
                             <Icon style={styles.icon} name='md-person'/>
                         </Button>
@@ -87,7 +90,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch =>{
     return{
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
-        set_page: page => dispatch(set_page(page))
+        set_page: page => dispatch(set_page(page)),
+        set_previous_page: page => dispatch(set_previous_page(page)),
     }
 };
 

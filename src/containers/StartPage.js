@@ -34,13 +34,13 @@ class StartPage extends Component {
                         <View >
                             <Text>See Your Changes</Text>
                             <Text >
-                                <ReloadInstructions />
+                                {/*<ReloadInstructions />*/}
                             </Text>
                         </View>
                         <View >
                             <Text >Debug</Text>
                             <Text >
-                                <DebugInstructions />
+                                {/*<DebugInstructions />*/}
                             </Text>
                         </View>
                         <View >
@@ -49,7 +49,7 @@ class StartPage extends Component {
                                 Read the docs to discover what to do next:
                             </Text>
                         </View>
-                        <LearnMoreLinks />
+                        {/*<LearnMoreLinks />*/}
                     </View>
                 </ScrollView>
             </Content>

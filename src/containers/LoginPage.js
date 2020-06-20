@@ -16,7 +16,7 @@ class LoginPage extends Component {
             <View style={styles.container}>
                 <View style={{flex: 1, flexBasis: 200}}/>
                 <View style={styles.inside_container}>
-                    <Icon style={{fontSize: 200}} name={'logo-octocat'}/>
+                    <Icon style={{fontSize: 200, color: 'rgba(255,255,255,0.8)'}} name={'logo-octocat'}/>
                     {/*<Image style={styles.logo}  source={require('../images/icons/user.png')} />*/}
                     <LoginForm />
                 </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         flexBasis: 400,
         paddingTop: 50,
         paddingBottom: 10,
-        backgroundColor: AppStyle.colors.violet,
+        backgroundColor: AppStyle.colors.blue_gray,
         alignItems: 'center',
         borderRadius: 50
     },

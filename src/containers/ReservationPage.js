@@ -15,11 +15,18 @@ import {
     ActionSheet
 } from 'native-base';
 import {
-    TextInput
-} from 'react-native'
+    Dimensions,
+    StyleSheet,
+    TextInput,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
 import {set_reservation_date, set_reservation_time} from '../actions/user_actions';
+import {AppStyle} from '../store/values/app_style';
+import {ICONS} from '../store/values/cafe_menu';
+
+const windowWidth = Dimensions.get('window').width;
+const date = new Date();
 
 class ReservationPage extends Component {
     constructor(props){
@@ -32,96 +39,125 @@ class ReservationPage extends Component {
     render() {
         const {page, user} = this.props;
         return (
-            <View>
-               <View>
+                <View style={styles.container}>
                    <Form>
                        <View>
-                           <Item floatingLabel>
-                               <Label>Your name</Label>
-                               <TextInput />
-                           </Item>
+                           <View style={styles.item_title}>
+                               <Icon name='ios-contact' style={styles.title_icon}/>
+                               <Text style={styles.title_text}>Contact data</Text>
+                           </View>
+                           <View style={styles.input_container}>
+                               <View style>
+                                   <Item floatingLabel>
+                                       <Label>Your name</Label>
+                                       <TextInput />
+                                   </Item>
+                               </View>
+                               <View>
+                                   <Item floatingLabel>
+                                       <Label>Phone number</Label>
+                                       <TextInput keyboardType={'phone-pad'} />
+                                   </Item>
+                               </View>
+                           </View>
                        </View>
                        <View>
-                           <Item floatingLabel>
-                               <Label>Phone number</Label>
-                               <TextInput keyboardType={'phone-pad'} />
-                           </Item>
-                       </View>
-                       <View>
-                           <DatePicker
-                           defaultDate={new Date()}
-                           locale={"en"}
-                           textStyle={{ color: "green" }}
-                           animationType={"slide"}
-                           onDateChange={this.setDate}
-                           placeHolderText="Select date"/>
-                       </View>
-                       <View>
-                           <Root>
-                               <View >
-                                   <View>
+                           <View style={styles.item_title}>
+                               <Icon name='ios-timer' style={styles.title_icon}/>
+                               <Text style={styles.title_text}>Booking time</Text>
+                           </View>
+                           <View style={styles.select_date}>
+                               <DatePicker
+                                   mode="date"
+                                   confirmBtnText="Confirm"
+                                   cancelBtnText="Cancel"
+                                   minimumDate={new Date()}
+                                   defaultDate={new Date()}
+                                   maximumDate={new Date(date.getFullYear(), date.getMonth() + 2, 31)}
+                                   locale={"en"}
+                                   modalTransparent={false}
+                                   androidMode="default"
+                                   textStyle={styles.date_picker}
+                                   animationType={"slide"}
+
+                                   onDateChange={this.setDate}
+                                   placeHolderText="Select date">
+                                   placeHolderTextStyle={styles.date_picker}
+                               </DatePicker>
+                           </View>
+                           <View >
+                               <Root>
+                                   <View style={styles.time_container}>
                                        <Item picker>
                                            <Picker
                                                mode="dropdown"
-                                               iosIcon={<Icon name="arrow-down" />}
-                                               style={{ width: undefined }}
+                                               iosHeader={'Select time'}
+                                               style={styles.time_picker}
                                                placeholder="Pick time"
-                                               placeholderStyle={{ color: "#bfc6ea" }}
+                                               selectedValue={user.reservation_time === null ? undefined : user.reservation_time}
+                                               placeholderStyle={{color: 'rgba(0,0,0,0.8)',
+                                                   fontSize: 15}}
                                                placeholderIconColor="#007aff"
                                                onValueChange={this.props.set_reservation_time}
                                            >
                                                {DATE_TIME.map((item, key) => (
-                                                   <Picker.Item label={item} value={item} />
-                                               ))}
+                                                   <Picker.Item  label={item} value={item} />))}
                                            </Picker>
                                        </Item>
                                    </View>
+                               </Root>
+                           </View>
+                           <View style={{marginBottom: 10, paddingLeft: 10}}>
+                               <View style={styles.result_time_container}>
+                                   <View>
+                                       <Text style={styles.result_time_text}>Date:</Text>
+                                   </View>
+                                   <View>
+                                       <Text style={styles.result_time_value}>
+                                           {user.reservation_date !== null ? user.reservation_date.toDateString() :
+                                               'Not chosen'}
+                                       </Text>
+                                   </View>
                                </View>
-                           </Root>
-                       </View>
-                       <View>
-                           <View>
-                               <Text>Date:</Text>
-                           </View>
-                           <View>
-                               <Text>
-                                   {user.reservation_date !== null ? user.reservation_date.toDateString() :
-                                       'Not chosen'}
-                               </Text>
-                           </View>
-                           <View>
-                               <Text>Time: </Text>
-                           </View>
-                           <View>
-                               <Text>
-                                   {user.reservation_time !== null ? user.reservation_time :
-                                       'Not chosen'}
-                               </Text>
-                           </View>
-                       </View>
-                       <View>
-                           <TextInput
-                               autoCorrect={true}
-                               multiline={true}
-                               numberOfLines={10}
-                               placeholder={'Your recommendation'}
-                               />
-                       </View>
-                       <View>
-                           <Button>
-                               <View>
+                               <View style={styles.result_time_container}>
                                    <View>
-                                       <Icon name={'ios-clock'}/>
+                                       <Text style={styles.result_time_text}>Time:</Text>
                                    </View>
                                    <View>
-                                       <Text>Reservation</Text>
+                                       <Text style={styles.result_time_value}>
+                                           {user.reservation_time !== null ? user.reservation_time :
+                                               'Not chosen'}
+                                       </Text>
                                    </View>
+                               </View>
+                           </View>
+                       </View>
+                       <View>
+                           <View style={styles.item_title}>
+                               <Icon name='ios-create' style={styles.title_icon}/>
+                               <Text style={styles.title_text}>Wishes to order</Text>
+                           </View>
+                           <View style={styles.wishes_container}>
+                               <TextInput
+                                   style={styles.wishes_input}
+                                   autoCorrect={true}
+                                   multiline={true}
+                                   numberOfLines={10}
+                                   placeholder={'Your wishes'}
+                                   placeholderTextColor={'rgba(0,0,0,0.8)'}
+                                   />
+                           </View>
+                       </View>
+                       <View>
+                           <Button style={styles.reservation_button}>
+                               <View style={styles.reservation_button_container}>
+                                   <Icon style={styles.reservation_button_icon} name={'ios-clock'}/>
+                                   <Text style={styles.reservation_button_text}>MAKE A RESERVATION</Text>
                                </View>
                            </Button>
                        </View>
                    </Form>
                </View>
-            </View>
         );
     }
 }
@@ -132,6 +168,133 @@ const mapStateToProps = store => {
         user: store.user,
     }
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: AppStyle.colors.white
+    },
+    reservation_button_container:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    reservation_button_text:{
+        fontSize: 25,
+        color: 'white',
+    },
+    reservation_button_icon:{
+        fontSize: 25,
+        color: 'white',
+        marginRight: 10,
+        marginTop: 3
+    },
+    reservation_button:{
+        width: 0.8*windowWidth,
+        marginLeft: 0.1 * windowWidth,
+        justifyContent: 'center',
+        backgroundColor: AppStyle.colors.red,
+        borderRadius: 30,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.38,
+        shadowRadius: 6.00,
+
+        elevation: 14,
+    },
+    wishes_container:{
+        margin: 15,
+        flexDirection: 'row',
+        backgroundColor: 'rgba(255,255,255,0.8)',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.38,
+        shadowRadius: 6.00,
+        borderRadius: 20,
+        elevation: 14,
+        marginBottom: 30
+    },
+    wishes_input:{
+        paddingTop: 20,
+        padding: 20
+    },
+    result_time_container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    result_time_text:{
+        fontSize: 25,
+        paddingRight: 10
+    },
+    result_time_value:{
+        fontSize: 20
+    },
+    item_title:{
+        padding: 10,
+        flexDirection: 'row',
+        flex: 1,
+        backgroundColor: AppStyle.colors.blue_gray,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.38,
+        shadowRadius: 6.00,
+
+        elevation: 14,
+    },
+    title_text:{
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 25,
+        fontWeight: 'bold'
+    },
+    select_date:{
+        marginLeft: 0.025 * windowWidth,
+        width: 0.95* windowWidth,
+        alignItems: 'center',
+        marginTop: 20,
+        backgroundColor: AppStyle.colors.yellow,
+        borderRadius: 30,
+        marginBottom: 20,
+
+    },
+    date_picker:{
+        color: 'rgba(0,0,0,0.8)',
+        fontSize: 15,
+        fontWeight: 'bold'
+    },
+    title_icon: {
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 30,
+        paddingRight: 10
+    },
+    time_container:{
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    time_picker: {
+        marginLeft: 0.025 * windowWidth,
+        width: 0.95* windowWidth,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: AppStyle.colors.yellow,
+        borderRadius: 30,
+        marginBottom: 20,
+    },
+    input_container:{
+        width: windowWidth,
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+
+});
 
 const mapDispatchToProps = dispatch => {
     return{

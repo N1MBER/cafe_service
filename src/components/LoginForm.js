@@ -25,14 +25,16 @@ class LoginForm extends Component {
                     <Form>
                         <View>
                             <Item floatingLabel >
-                                <Label>Email or username</Label>
+                                <Label style={styles.text}>Email or username</Label>
                                 <TextInput />
                             </Item>
                         </View>
                         <View>
                             <Item  floatingLabel >
-                                <Label>Password</Label>
-                                <TextInput />
+                                <Label style={styles.text}>Password</Label>
+                                <TextInput
+                                    secureTextEntry={true}
+                                    autoCorrect={true}/>
                             </Item>
                         </View>
                     </Form>
@@ -55,9 +57,9 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         color: 'white'
     },
-    input_field:{
-        color: 'white',
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',    },
+    input_field: {
+        color: 'transparent',
+    },
     text: {
         color: 'white',
         backgroundColor: 'transparent',

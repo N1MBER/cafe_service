@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     text: {
-        color: 'black',
-        fontSize: 15,
+        color: 'white',
+        fontSize: 16,
         fontWeight: 'normal',
         textAlign: 'center'
     },
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
         paddingBottom: 30
     },
     network_text:{
-        paddingTop: 20
+        paddingTop: 20,
+
     },
     icon_container: {
         paddingTop: 20,

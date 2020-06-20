@@ -149,7 +149,7 @@ class SettingsPage extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: AppStyle.colors.purple,
+        backgroundColor: AppStyle.colors.background,
     },
     item_title:{
         backgroundColor: AppStyle.colors.blue_gray,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     text:{
-        color: 'white'
+        color: 'rgba(0,0,0,0.8)'
     },
     item_container: {
         flex: 1,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
     item: {
         flex: 1,
-        color: 'white'
+        color: 'rgba(0,0,0,0.8)'
     }
 });
 

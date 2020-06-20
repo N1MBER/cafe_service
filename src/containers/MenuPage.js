@@ -14,7 +14,7 @@ import {
 } from 'native-base'
 import {ICONS, POSITION} from '../store/values/cafe_menu';
 import {MENU} from '../store/values/cafe_menu';
-import { Dimensions } from 'react-native';
+import { Dimensions,ScrollView } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -23,27 +23,29 @@ class MenuPage extends Component {
         const {page} = this.props;
         return (
             <View style={styles.container}>
-                <List style={styles.list}>
-                    {POSITION.map((item, key)=>(
-                        <View >
-                            <ListItem itemDivider style={styles.title_container}>
-                                <Icon name={ICONS[key]} style={styles.title_icon}/>
-                                <Text key={key} style={styles.title_text}> { item } </Text>
-                            </ListItem>
-                            {MENU[key] != undefined ?
-                                MENU[key].map((element, op)=>(
-                                        <ListItem style={styles.content}>
-                                            <Icon name={'ios-color-filter'} style={styles.content_icon}/>
-                                            <Text key={op} style={styles.content_text}> { element[0] } </Text>
-                                            <Text key={op } style={styles.content_price}> { element[1].toFixed(2) } $</Text>
-                                        </ListItem>)
-                                    ) :
-                                <View/>
-                            }
-                        </View>
-                        ))
-                    }
-                </List>
+                <ScrollView>
+                    <List style={styles.list}>
+                        {POSITION.map((item, key)=>(
+                            <View >
+                                <ListItem itemDivider style={styles.title_container}>
+                                    <Icon name={ICONS[key]} style={styles.title_icon}/>
+                                    <Text key={key} style={styles.title_text}> { item } </Text>
+                                </ListItem>
+                                {MENU[key] != undefined ?
+                                    MENU[key].map((element, op)=>(
+                                            <ListItem style={styles.content}>
+                                                <Icon name={'ios-color-filter'} style={styles.content_icon}/>
+                                                <Text key={op} style={styles.content_text}> { element[0] } </Text>
+                                                <Text key={op } style={styles.content_price}> { element[1].toFixed(2) } $</Text>
+                                            </ListItem>)
+                                        ) :
+                                    <View/>
+                                }
+                            </View>
+                            ))
+                        }
+                    </List>
+                </ScrollView>
             </View>
         );
     }
@@ -91,18 +93,18 @@ const styles = StyleSheet.create({
     content_icon: {
         flex: 0.8,
         fontSize: 20,
-        color: 'rgba(255,255,255,0.8)'
+        color: 'rgba(0,0,0,0.8)'
     },
     content_text: {
         flex: 4,
         fontSize: 18,
-        color: 'rgba(255,255,255,0.8)'
+        color: 'rgba(0,0,0,0.8)'
     },
     content_price: {
         flex: 1.4,
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'rgba(255,255,255,0.8)'
+        color: 'rgba(0,0,0,0.8)'
     },
 });
 

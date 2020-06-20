@@ -59,7 +59,7 @@ class MainPage extends Component {
 const styles = StyleSheet.create({
     content:{
         flex: 1,
-        backgroundColor: AppStyle.colors.purple
+        backgroundColor: AppStyle.colors.background
     }
 });
 

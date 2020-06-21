@@ -12,10 +12,11 @@ import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
-import {LOCATION, LOGIN, MENU, RESERVATION, SETTINGS} from '../store/values/app_values';
+import {LOCATION, LOGIN, MAIN_PAGE, MENU, RESERVATION, SETTINGS} from '../store/values/app_values';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import MenuPage from '../containers/MenuPage';
+import MainPage from '../containers/MainPage';
 
 class AppFooter extends Component {
     constructor(props){
@@ -39,9 +40,9 @@ class AppFooter extends Component {
                 this.props.set_page_tittle(name);
                 this.props.set_page(ReservationPage);
                 break;
-            case MENU:
+            case MAIN_PAGE:
                 this.props.set_page_tittle(name);
-                this.props.set_page(MenuPage);
+                this.props.set_page(StartPage);
                 break;
         }
 
@@ -59,9 +60,9 @@ class AppFooter extends Component {
                             <Icon style={styles.icon} name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(MENU, page.values.header.tittle.menu, page.header_name, page.page)
+                            this.switch_page(MAIN_PAGE, page.values.header.tittle.cafe, page.header_name, page.page)
                         }}>
-                            <Icon style={styles.icon} name='restaurant'/>
+                            <Icon style={styles.icon} name='ios-grid'/>
                         </Button>
                         <Button onPress={() => {
                             this.switch_page(RESERVATION, page.values.header.tittle.reservation, page.header_name, page.page)

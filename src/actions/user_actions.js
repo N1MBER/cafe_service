@@ -5,11 +5,19 @@ export const SET_AUTHORIZATION = 'SET_AUTHORIZATION';
 export const SET_NAME = 'SET_NAME';
 export const SET_RESERVATION_DATE = 'SET_RESERVATION_DATE';
 export const SET_RESERVATION_TIME = 'SET_RESERVATION_TIME';
+export const SET_RESERVATION_PLACE = 'SET_RESERVATION_PLACE';
 
 export function set_login(login) {
     return{
         type: SET_LOGIN,
         payload: login
+    }
+}
+
+export function set_reservation_place(place) {
+    return{
+        type: SET_RESERVATION_PLACE,
+        payload: place
     }
 }
 

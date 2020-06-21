@@ -21,9 +21,10 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
-import {set_reservation_date, set_reservation_time} from '../actions/user_actions';
+import {set_reservation_date, set_reservation_place, set_reservation_time} from '../actions/user_actions';
 import {AppStyle} from '../store/values/app_style';
 import {ICONS} from '../store/values/cafe_menu';
+import {CITIES} from '../store/values/settings_values';
 
 const windowWidth = Dimensions.get('window').width;
 const date = new Date();
@@ -53,7 +54,7 @@ class ReservationPage extends Component {
                                        <TextInput />
                                    </Item>
                                </View>
-                               <View>
+                               <View style={{marginTop: 10}}>
                                    <Item floatingLabel>
                                        <Label>Phone number</Label>
                                        <TextInput keyboardType={'phone-pad'} />
@@ -81,7 +82,7 @@ class ReservationPage extends Component {
                                    animationType={"slide"}
 
                                    onDateChange={this.setDate}
-                                   placeHolderText="Select date">
+                                   placeHolderText="SELECT DATE">
                                    placeHolderTextStyle={styles.date_picker}
                                </DatePicker>
                            </View>
@@ -93,9 +94,9 @@ class ReservationPage extends Component {
                                                mode="dropdown"
                                                iosHeader={'Select time'}
                                                style={styles.time_picker}
-                                               placeholder="Pick time"
+                                               placeholder="PICK TIME"
                                                selectedValue={user.reservation_time === null ? undefined : user.reservation_time}
-                                               placeholderStyle={{color: 'rgba(0,0,0,0.8)',
+                                               placeholderStyle={{color: 'black',
                                                    fontSize: 15}}
                                                placeholderIconColor="#007aff"
                                                onValueChange={this.props.set_reservation_time}
@@ -129,6 +130,33 @@ class ReservationPage extends Component {
                                                'Not chosen'}
                                        </Text>
                                    </View>
+                               </View>
+                           </View>
+                       </View>
+                       <View>
+                           <View style={styles.item_title}>
+                               <Icon name='ios-map' style={styles.title_icon}/>
+                               <Text style={styles.title_text}>Cafeteria</Text>
+                           </View>
+                           <Button style={styles.select_city_button} onPress={()=>
+                               ActionSheet.show({
+                                       options: CITIES,
+                                       title: 'Cafeteria',
+                                       cancelButtonIndex: CITIES.length - 1
+                                   },
+                                   buttonIndex => {
+                                       if(buttonIndex != CITIES.length - 1)
+                                           this.props.set_reservation_place( CITIES[buttonIndex] );
+                                   }
+                               )}>
+                               <Text style={styles.select_city_text}>SELECT CITY</Text>
+                           </Button>
+                           <View style={{paddingBottom: 10, paddingLeft: 10}}>
+                               <View style={styles.result_time_container}>
+                                   <Text style={styles.result_time_text}>Place:</Text>
+                                   <Text style={styles.result_time_value}>
+                                       {user.reservation_place === null ? 'Please choose place' : user.reservation_place}
+                                   </Text>
                                </View>
                            </View>
                        </View>
@@ -173,6 +201,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: AppStyle.colors.white
+    },
+    select_city_button:{
+        marginLeft: 0.025 * windowWidth,
+        width: 0.95* windowWidth,
+        justifyContent: 'center',
+        marginTop: 20,
+        backgroundColor: AppStyle.colors.yellow,
+        borderRadius: 30,
+    },
+    select_city_text: {
+        fontSize: 15,
+        color: 'black'
     },
     reservation_button_container:{
         flexDirection: 'row',
@@ -300,6 +340,7 @@ const mapDispatchToProps = dispatch => {
     return{
         set_reservation_date: date => dispatch(set_reservation_date(date)),
         set_reservation_time: time => dispatch(set_reservation_time(time)),
+        set_reservation_place: place => dispatch(set_reservation_place(place)),
     }
 };
 

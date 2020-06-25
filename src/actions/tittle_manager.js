@@ -8,6 +8,8 @@ import StartPage from '../containers/StartPage';
 export const SET_PAGE_TITTLE = 'SET_PAGE_TITTLE';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_PREVIOUS_PAGE = 'SET_PREVIOUS_PAGE';
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+
 
 export function set_page_tittle(tittle) {
     return{
@@ -27,6 +29,13 @@ export function set_previous_page(page) {
     return{
         type: SET_PREVIOUS_PAGE,
         payload: page
+    }
+}
+
+export function set_page_lang(language) {
+    return{
+        type: SET_LANGUAGE,
+        payload: language
     }
 }
 

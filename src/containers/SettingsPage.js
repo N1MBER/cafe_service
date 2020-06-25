@@ -20,9 +20,13 @@ import {
 import {StyleSheet, Linking,Alert} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {set_reservation_city} from '../actions/user_actions';
+import {set_page_lang} from '../actions/tittle_manager';
+import {languages} from '../store/reducers/settings_reducer';
+import {russian_language} from '../store/values/Localization/russian_language';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
+
         return (
             <View style={styles.container}>
                 <List>
@@ -70,7 +74,7 @@ class SettingsPage extends Component {
                                 }
                                 )}>
                             <View style={styles.item_container}>
-                                <Text style={styles.item}>Default city: </Text>
+                                <Text style={styles.item}>{page.values.settings_page.default_city}</Text>
                                 <Text style={styles.item}>{settings.default_city !== undefined && settings.default_city !== null ?
                                     settings.default_city : page.values.settings_page.not_chosen}</Text>
                             </View>
@@ -92,12 +96,16 @@ class SettingsPage extends Component {
                                         cancelButtonIndex: LANGUAGES.length - 1
                                     },
                                     buttonIndex => {
-                                        if(buttonIndex != LANGUAGES.length - 1)
-                                            this.props.set_language( LANGUAGES[buttonIndex] );
+                                        if(buttonIndex != LANGUAGES.length - 1) {
+                                            alert(LANGUAGES[buttonIndex])
+                                            this.props.set_language(1);
+                                            // alert(languages[buttonIndex]);
+                                            // this.props.set_page_lang(russian_language);
+                                        }
                                     }
                                 )}>
                                 <View style={styles.item_container}>
-                                    <Text style={styles.item}>Language: </Text>
+                                    <Text style={styles.item}>{page.values.settings_page.language} </Text>
                                     <Text style={styles.item}>{settings.language !== undefined && settings.language !== null ?
                                         settings.language : page.values.settings_page.not_chosen}</Text>
                                 </View>
@@ -199,6 +207,7 @@ const mapDispatchToProps = dispatch =>{
     return{
         set_default_city: city => dispatch(set_default_city(city)),
         set_language: language => dispatch(set_language(language)),
+        set_page_lang: language => dispatch(set_page_lang(language)),
         set_new_position_notification: value => dispatch(set_new_position_notification(value)),
         set_reservation_notification: value => dispatch(set_reservation_notification(value)),
         set_reservation_city: city => dispatch(set_reservation_city(city)),

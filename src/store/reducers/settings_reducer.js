@@ -11,6 +11,10 @@ import {
     SET_DEFAULT_CITY,
     SET_LANGUAGE,
 } from '../../actions/settings_manager';
+import {russian_language} from '../values/Localization/russian_language';
+import {english_language} from '../values/Localization/english_language';
+
+export const languages = [russian_language, english_language]
 
 
 const  initialState = {

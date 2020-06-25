@@ -18,7 +18,7 @@ class UserPage extends Component {
         const {page, user} = this.props;
         return (
             <View style={styles.container}>
-                <Text style={styles.title_text}>My Profile</Text>
+                <Text style={styles.title_text}>{page.values.user_page.my_profile}</Text>
                 <View style={styles.image_container}>
                     <Image style={styles.image} source={require('../images/icons/user.png')}/>
                     <Text style={styles.image_text}>{user.name !== undefined ? user.name : undefined}</Text>

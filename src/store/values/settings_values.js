@@ -1,5 +1,7 @@
 import {russian_language} from './Localization/russian_language';
 import {english_language} from './Localization/english_language';
+import {chinese_language} from './Localization/chinese_language';
+import {german_language} from './Localization/german_language';
 
 export const settings_values = {
     spb: 'Saint-Petersburg',
@@ -15,4 +17,4 @@ export const PLACES = [
     ['Prospekt Lenina', 'Ermaka street'],
     ['Baumana street', 'Pushkina street'],
 ]
-export const LANGUAGES = [['Русский', 'English', 'Deutsch', '中文', 'Cancel'],[russian_language, english_language]]
+export const LANGUAGES = [['Русский', 'English', 'Deutsch', '中文', 'Cancel'],[russian_language, english_language, german_language, chinese_language]]

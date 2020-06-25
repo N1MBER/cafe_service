@@ -32,6 +32,10 @@ export function tittle_reducer(state = initialState, action) {
                     return {...state, values: LANGUAGES[1][0]};
                 case LANGUAGES[0][1]:
                     return {...state, values: LANGUAGES[1][1]};
+                case LANGUAGES[0][2]:
+                    return {...state, values: LANGUAGES[1][2]};
+                case LANGUAGES[0][3]:
+                    return {...state, values: LANGUAGES[1][3]};
                 default:
                     return {...state, values: english_language};
             }

@@ -87,7 +87,7 @@ export const english_language = {
             select_city: 'SELECT CITY',
             select_place: 'SELECT PLACE',
             place: 'Place:',
-            choose_place: 'Please choose place',
+            choose_place: 'Please choose a place',
             wishes: 'Wishes to order',
             your_wishes: 'Your wishes',
             make_reservation: 'MAKE A RESERVATION'

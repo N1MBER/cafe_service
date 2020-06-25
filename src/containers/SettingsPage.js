@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Text } from 'native-base';
+import React, { Component, } from 'react';
 import {
     View,
+    Text,
     List,
     ListItem,
     CheckBox,
@@ -9,7 +9,6 @@ import {
     ActionSheet,
     Root,
 } from 'native-base';
-
 import {connect} from 'react-redux';
 import {CITIES, LANGUAGES} from '../store/values/settings_values';
 import {
@@ -18,13 +17,12 @@ import {
     set_new_position_notification,
     set_reservation_notification,
 } from '../actions/settings_manager';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Linking,Alert} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {set_reservation_city} from '../actions/user_actions';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
-
         return (
             <View style={styles.container}>
                 <List>
@@ -113,10 +111,14 @@ class SettingsPage extends Component {
                     </View>
                     <View>
                         <ListItem>
-                            <Text style={styles.text}>Report an error</Text>
+                                <Text onPress={() => {
+                                    Linking.openURL('https://github.com/N1MBER')
+                                }} style={styles.text}>Report an error</Text>
                         </ListItem>
                         <ListItem>
-                            <Text style={styles.text}>Ask a Question</Text>
+                            <Text onPress={() => {
+                                Linking.openURL('https://github.com/N1MBER')
+                            }} style={styles.text}>Ask a Question</Text>
                         </ListItem>
                     </View>
                     <View style={styles.item_title}>

@@ -82,11 +82,11 @@ class StartPage extends Component {
                         this.props.set_page(MenuPage);
                         this.props.set_previous_page(StartPage)
                     }}>
-                        <Text style={styles.menu_button_text}>OUR MENU</Text>
+                        <Text style={styles.menu_button_text}>{page.values.start_page.our_menu}</Text>
                     </Button>
                 </View>
                 <View style={styles.feedback_title}>
-                    <Text style={styles.feedback_title_text}>Give feedback</Text>
+                    <Text style={styles.feedback_title_text}>{page.values.start_page.feedback}</Text>
                 </View>
                 <View style={styles.feedback_container}>
                     <View>
@@ -94,7 +94,7 @@ class StartPage extends Component {
                         <View style={styles.feedback_icon_container}>
                             <Icon style={styles.feedback_icon} name='ios-chatbubbles'/>
                         </View>
-                        <Text style={styles.feedback_text}>Rate visit</Text>
+                        <Text style={styles.feedback_text}>{page.values.start_page.rate}</Text>
                     </View>
                 </View>
                 <View style={styles.title_container}>

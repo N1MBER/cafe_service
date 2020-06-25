@@ -52,15 +52,15 @@ class LoginForm extends Component {
         })
     }
 
-    checkData(login, password){
+    checkData(login, password, notification){
         let flag = true;
         let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if(!re.test(login)){
             flag = false;
-            alert("Mail entered incorrectly")
+            alert(notification.mail_notification)
         }else if(password.length < 6){
             flag = false;
-            alert("Password is too short")
+            alert(notification.password_notification)
         }
     }
 
@@ -82,7 +82,7 @@ class LoginForm extends Component {
                                     onChangeText={login => this.setLogin(login)}
                                     style={styles.input_field}
                                     placeholderTextColor={AppStyle.colors.white}
-                                    placeholder={'Email'}
+                                    placeholder={page.values.login_page.form.email}
                                     autoCorrect={true}/>
                             </Item>
                         </View>
@@ -92,7 +92,7 @@ class LoginForm extends Component {
                                     onChangeText={password => this.setPassword(password)}
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
-                                    placeholder={'Password'}
+                                    placeholder={page.values.login_page.form.password}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
                             </Item>
@@ -103,10 +103,10 @@ class LoginForm extends Component {
                     <View style={styles.container}>
                         <View style={styles.element}>
                             <Button style={styles.button} onPress={() => {
-                                this.checkData(this.state.login, this.state.password)
+                                this.checkData(this.state.login, this.state.password, page.values.login_page.notification)
                                 this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page)
                             }}>
-                                <Text style={styles.text_button}>{String(page.values.login_page.login)}</Text>
+                                <Text style={styles.text_button}>{String(page.values.login_page.form.login)}</Text>
                             </Button>
                         </View>
                         <View style={{flex: 1, flexBasis: 20}}/>
@@ -114,12 +114,12 @@ class LoginForm extends Component {
                             <Button style={styles.button} onPress={() =>
                                 this.switch_page(REGISTRATION, page.values.header.tittle.register, page.header_name, page.page)
                             }>
-                                <Text style={styles.text_button}>{String(page.values.login_page.registration)}</Text>
+                                <Text style={styles.text_button}>{String(page.values.login_page.form.registration)}</Text>
                             </Button>
                         </View>
                     </View>
                     <View style={styles.network_text}>
-                        <Text style={styles.text} >{String(page.values.login_page.other_variant)}</Text>
+                        <Text style={styles.text} >{String(page.values.login_page.form.other_variant)}</Text>
                     </View>
                     <View style={styles.icon_container}>
                         <View>

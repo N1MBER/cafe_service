@@ -40,43 +40,43 @@ class ReservationPage extends Component {
         this.props.set_reservation_date(newDate)
     }
 
-    check_data(name, number, date, time, city, place, wishes){
+    check_data(name, number, date, time, city, place, wishes, notification){
         if(!(!/^(-?\d+)([.,]\d+)?$/.test(name))){
-            alert("The name is entered incorrectly.");
+            alert(notification.name);
             return false;
         }else if(!/^(-?\d+)([.,]\d+)?$/.test(number)){
-            alert("The phone number is entered incorrectly.");
+            alert(notification.phone_number);
             return false;
         }
         else if(date === null || time == null || city === null || place === null){
-            alert("No time or place selected.");
+            alert(notification.time_and_place);
             return false;
         }
         return true;
     }
 
     render() {
-        const {user, settings} = this.props;
+        const {page, user, settings} = this.props;
         return (
                 <View style={styles.container}>
                    <Form>
                        <View>
                            <View style={styles.item_title}>
                                <Icon name='ios-contact' style={styles.title_icon}/>
-                               <Text style={styles.title_text}>Contact data</Text>
+                               <Text style={styles.title_text}>{page.values.reservation_page.form.contact_data}</Text>
                            </View>
                            <View style={styles.input_container}>
                                <View>
                                    <Item >
                                        <TextInput style={styles.input_field}
-                                           placeholder={"Your name"}
+                                           placeholder={page.values.reservation_page.form.name}
                                            onChangeText={text => this.props.set_reservation_name(text)}/>
                                    </Item>
                                </View>
                                <View>
                                    <Item >
                                    <TextInput style={styles.input_field}
-                                              placeholder={"Phone number"}
+                                              placeholder={page.values.reservation_page.form.phone}
                                               onChangeText={text => this.props.set_reservation_phone_number(text)}
                                               keyboardType={'phone-pad'} />
                                    </Item>
@@ -86,7 +86,7 @@ class ReservationPage extends Component {
                        <View>
                            <View style={styles.item_title}>
                                <Icon name='ios-timer' style={styles.title_icon}/>
-                               <Text style={styles.title_text}>Booking time</Text>
+                               <Text style={styles.title_text}>{page.values.reservation_page.form.booking_time}</Text>
                            </View>
                            <View style={styles.select_date}>
                                <DatePicker
@@ -102,7 +102,7 @@ class ReservationPage extends Component {
                                    textStyle={styles.date_picker}
                                    animationType={"slide"}
                                    onDateChange={this.setDate}
-                                   placeHolderText="SELECT DATE">
+                                   placeHolderText={page.values.reservation_page.form.select_date}>
                                    placeHolderTextStyle={styles.date_picker}
                                </DatePicker>
                            </View>
@@ -112,9 +112,9 @@ class ReservationPage extends Component {
                                        <Item picker>
                                            <Picker
                                                mode="dropdown"
-                                               iosHeader={'Select time'}
+                                               iosHeader={page.values.reservation_page.form.select_time}
                                                style={styles.time_picker}
-                                               placeholder="PICK TIME"
+                                               placeholder={page.values.reservation_page.form.pick_me}
                                                selectedValue={user.reservation_time === null ? undefined : user.reservation_time}
                                                placeholderStyle={{color: 'black',
                                                    fontSize: 15}}
@@ -131,23 +131,23 @@ class ReservationPage extends Component {
                            <View style={{marginBottom: 10, paddingLeft: 10}}>
                                <View style={styles.result_time_container}>
                                    <View>
-                                       <Text style={styles.result_time_text}>Date:</Text>
+                                       <Text style={styles.result_time_text}>{page.values.reservation_page.form.date}</Text>
                                    </View>
                                    <View>
                                        <Text style={styles.result_time_value}>
                                            {user.reservation_date !== null ? user.reservation_date.toDateString() :
-                                               'Not chosen'}
+                                               page.values.reservation_page.form.not_chosen}
                                        </Text>
                                    </View>
                                </View>
                                <View style={styles.result_time_container}>
                                    <View>
-                                       <Text style={styles.result_time_text}>Time:</Text>
+                                       <Text style={styles.result_time_text}>{page.values.reservation_page.form.time}</Text>
                                    </View>
                                    <View>
                                        <Text style={styles.result_time_value}>
                                            {user.reservation_time !== null ? user.reservation_time :
-                                               'Not chosen'}
+                                               page.values.reservation_page.form.not_chosen}
                                        </Text>
                                    </View>
                                </View>
@@ -156,13 +156,13 @@ class ReservationPage extends Component {
                        <View>
                            <View style={styles.item_title}>
                                <Icon name='ios-map' style={styles.title_icon}/>
-                               <Text style={styles.title_text}>Cafeteria</Text>
+                               <Text style={styles.title_text}>{page.values.header.tittle.cafe}</Text>
                            </View>
                            {(settings.default_city === null || settings.default_city === undefined || settings.default_city === 'None')?
                                <Button style={styles.select_city_button} onPress={()=>
                                    ActionSheet.show({
                                            options: CITIES,
-                                           title: 'Cities',
+                                           title: page.values.reservation_page.form.cities,
                                            cancelButtonIndex: CITIES.length - 1
                                        },
                                        buttonIndex => {
@@ -170,7 +170,7 @@ class ReservationPage extends Component {
                                                this.props.set_reservation_city( CITIES[buttonIndex] );
                                        }
                                    )}>
-                                   <Text style={styles.select_city_text}>SELECT CITY</Text>
+                                   <Text style={styles.select_city_text}> {page.values.reservation_page.form.select_city}</Text>
                                </Button> : undefined
                            }
 
@@ -178,21 +178,21 @@ class ReservationPage extends Component {
                                <Button style={styles.select_city_button} onPress={()=>
                                    ActionSheet.show({
                                            options: PLACES[CITIES.indexOf(user.reservation_city)],
-                                           title: 'Cafeteria',
+                                           title: page.values.header.tittle.cafe,
                                        },
                                        buttonIndex => {
                                                this.props.set_reservation_place( PLACES[CITIES.indexOf(user.reservation_city)][buttonIndex] );
                                        }
                                    )}>
-                                   <Text style={styles.select_city_text}>SELECT PLACE</Text>
+                                   <Text style={styles.select_city_text}>{page.values.reservation_page.form.select_place}</Text>
                                </Button>:
                                undefined
                            }
                            <View style={{paddingBottom: 10, paddingLeft: 10}}>
                                <View style={styles.result_time_container}>
-                                   <Text style={styles.result_time_text}>Place:</Text>
+                                   <Text style={styles.result_time_text}>{page.values.reservation_page.form.place}</Text>
                                    <Text style={styles.result_time_value}>
-                                       {user.reservation_place === null ? 'Please choose place' : user.reservation_city + ' ' + user.reservation_place}
+                                       {user.reservation_place === null ? page.values.reservation_page.form.choose_place : user.reservation_city + ' ' + user.reservation_place}
                                    </Text>
                                </View>
                            </View>
@@ -200,7 +200,7 @@ class ReservationPage extends Component {
                        <View>
                            <View style={styles.item_title}>
                                <Icon name='ios-create' style={styles.title_icon}/>
-                               <Text style={styles.title_text}>Wishes to order</Text>
+                               <Text style={styles.title_text}>{page.values.reservation_page.form.wishes}</Text>
                            </View>
                            <View style={styles.wishes_container}>
                                <TextInput
@@ -209,7 +209,7 @@ class ReservationPage extends Component {
                                    multiline={true}
                                    numberOfLines={10}
                                    onChangeText={text => this.props.set_wishes(text)}
-                                   placeholder={'Your wishes'}
+                                   placeholder={page.values.reservation_page.form.your_wishes}
                                    placeholderTextColor={'rgba(0,0,0,0.8)'}
                                    />
                            </View>
@@ -218,10 +218,10 @@ class ReservationPage extends Component {
                            <Button style={styles.reservation_button}  onPress={() => {
                            this.check_data(user.reservation_name, user.reservation_phone_number,
                            user.reservation_date, user.reservation_time, user.reservation_city,
-                           user.reservation_place, user.wishes)}}>
+                           user.reservation_place, user.wishes, page.values.reservation_page.notification)}}>
                                <View style={styles.reservation_button_container}>
                                    <Icon style={styles.reservation_button_icon} name={'ios-clock'}/>
-                                   <Text style={styles.reservation_button_text}>MAKE A RESERVATION</Text>
+                                   <Text style={styles.reservation_button_text}>{page.values.reservation_page.form.make_reservation}</Text>
                                </View>
                            </Button>
                        </View>

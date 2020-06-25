@@ -1,6 +1,6 @@
 export const drinks ={}
 
-export const MENU = [
+export const ENG_MENU = [
     //========
     // COFFEE
     //========
@@ -36,5 +36,5 @@ export const MENU = [
     ]
 ];
 
-export const POSITION = ['COFFEE','TEA','DESSERT','MINI BITES'];
+export const ENG_POSITION = ['COFFEE','TEA','DESSERT','MINI BITES'];
 export const ICONS = ['ios-cafe','ios-color-fill','ios-ice-cream','pizza'];

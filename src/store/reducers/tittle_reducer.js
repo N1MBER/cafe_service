@@ -4,13 +4,14 @@ import {
 } from '../../actions/tittle_manager';
 import StartPage from '../../containers/StartPage';
 import {app_values} from '../values/app_values';
+import {english_language} from '../values/Localization/english_language';
 
 
 const  initialState = {
     header_name: app_values.header.tittle.cafe,
     page: StartPage,
     previous_page: StartPage,
-    values: app_values
+    values: english_language
 };
 
 export function tittle_reducer(state = initialState, action) {

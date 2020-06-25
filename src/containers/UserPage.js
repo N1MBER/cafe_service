@@ -28,48 +28,48 @@ class UserPage extends Component {
                         <View style={styles.info}>
                             <Badge danger><Text>!</Text></Badge>
                             <Text onPress={() =>
-                                alert("You have a reservation for\n" +
+                                alert(page.values.user_page.notification_reservation + "\n" +
                                     user.reservation_date + " " + user.reservation_time + '\n' +
                                     user.reservation_city + ' ' + user.reservation_place)}
-                                  style={styles.info_title}>Booking time coming soon</Text>
+                                  style={styles.info_title}>{page.values.user_page.booking_time}</Text>
                         </View>
                     </View> :
                     null
                 }
                 <View style={styles.inside_container}>
                     <View style={styles.info}>
-                        <Text style={styles.info_title}>Login</Text>
+                        <Text style={styles.info_title}>{page.values.user_page.login}</Text>
                         <Text style={styles.info_value}>
-                            {user.login === undefined || user.login === null ? 'None' : user.login}
+                            {user.login === undefined || user.login === null ? page.values.user_page.none : user.login}
                         </Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={styles.info_title}>Name</Text>
+                        <Text style={styles.info_title}>{page.values.user_page.name}</Text>
                         <Text style={styles.info_value}>
-                            {user.name === undefined || user.name === null ? 'None' : user.name}
+                            {user.name === undefined || user.name === null ? page.values.user_page.none : user.name}
                         </Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={styles.info_title}>Email</Text>
+                        <Text style={styles.info_title}>{page.values.user_page.email}</Text>
                         <Text style={styles.info_value}>
-                            {user.email === undefined || user.email === null ? 'None' : user.email}
+                            {user.email === undefined || user.email === null ? page.values.user_page.none : user.email}
                         </Text>
                     </View>
                     <View style={styles.info}>
-                        <Text style={styles.info_title}>Phone</Text>
+                        <Text style={styles.info_title}>{page.values.user_page.phone}</Text>
                         <Text style={styles.info_value}>
-                            {user.phone_number === undefined || user.phone_number === null ? 'None' : user.phone_number}
+                            {user.phone_number === undefined || user.phone_number === null ? page.values.user_page.none : user.phone_number}
                         </Text>
                     </View>
                 </View>
                 <View style={styles.button_container}>
                     <Button style={styles.button}>
-                        <Text style={styles.button_text}>CHANGE PHONE NUMBER</Text>
+                        <Text style={styles.button_text}>{page.values.user_page.change_phone}</Text>
                     </Button>
                 </View>
                 <View style={styles.button_container}>
                     <Button style={styles.button}>
-                        <Text style={styles.button_text}>CHANGE PASSWORD</Text>
+                        <Text style={styles.button_text}>{page.values.user_page.change_password}</Text>
                     </Button>
                 </View>
             </View>

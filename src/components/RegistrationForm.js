@@ -33,27 +33,27 @@ class RegistrationForm extends Component {
         }
     }
 
-    check_data(email, password, repeat_password, phone_number, city) {
+    check_data(email, password, repeat_password, phone_number, city, notification) {
         let flag = true;
         let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if (!re.test(email)) {
             flag = false;
-            alert("Mail entered incorrectly")
+            alert(notification.mail)
         } else if (password.length < 6 || repeat_password.length < 6 ) {
             flag = false;
-            alert("Password is too short")
+            alert(notification.password)
         } else if(repeat_password !== password){
             flag = false;
-            alert("Password mismatch")
+            alert(notification.repeat_password)
         }
         else if (!/^(-?\d+)([.,]\d+)?$/.test(phone_number)) {
             flag = false;
-            alert("The phone number is entered incorrectly.");
+            alert(notification.phone_number);
             return false;
         }
         else if(city === null){
             flag = false;
-            alert("Please choose default city");
+            alert(notification.default_city);
             return false;
         }
     }
@@ -69,7 +69,7 @@ class RegistrationForm extends Component {
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
                                     onChangeText={text => this.setState({email: text})}
-                                    placeholder={'Email'}
+                                    placeholder={page.values.registration_page.form.email}
                                     autoCorrect={true}/>
                             </Item>
                         </View>
@@ -78,7 +78,7 @@ class RegistrationForm extends Component {
                                 <TextInput
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
-                                    placeholder={'Password'}
+                                    placeholder={page.values.registration_page.form.password}
                                     onChangeText={text => this.setState({password: text})}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
@@ -90,7 +90,7 @@ class RegistrationForm extends Component {
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
                                     onChangeText={text => this.setState({repeat_password: text})}
-                                    placeholder={'Repeat password'}
+                                    placeholder={page.values.registration_page.form.repeat_password}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
                             </Item>
@@ -100,7 +100,7 @@ class RegistrationForm extends Component {
                                 <TextInput
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
-                                    placeholder={'Your phone'}
+                                    placeholder={page.values.registration_page.form.phone}
                                     onChangeText={text => this.setState({phone_number: text})}
                                     secureTextEntry={true}
                                     autoCorrect={true}
@@ -111,21 +111,24 @@ class RegistrationForm extends Component {
                             <Button  style={styles.button_city} onPress={()=>
                                 ActionSheet.show({
                                         options: CITIES,
-                                        title: 'Cafeteria',
+                                        title: page.values.header.tittle.cafe,
                                         cancelButtonIndex: CITIES.length - 1
                                     },
                                     buttonIndex => {
-                                        if(buttonIndex !== CITIES.length - 1)
-                                            this.props.set_default_city( CITIES[buttonIndex] );
+                                        if(buttonIndex !== CITIES.length - 1) {
+                                            this.props.set_default_city(CITIES[buttonIndex]);
+                                            this.setState({city: CITIES[buttonIndex]})
+                                        }
                                     }
                                 )}>
-                                <Text style={styles.city_text}>DEFAULT CITY</Text>
+                                <Text style={styles.city_text}>{page.values.registration_page.form.default_city}</Text>
                             </Button>
                         </Root>
                         <View >
                             <Button style={styles.button_register} onPress={() => this.check_data(this.state.email,
-                                this.state.password, this.state.repeat_password, this.state.phone_number)}>
-                                <Text style={styles.text_button}>REGISTRATION</Text>
+                                this.state.password, this.state.repeat_password, this.state.phone_number,
+                                this.state.city, page.values.registration_page.notification)}>
+                                <Text style={styles.text_button}>{page.values.registration_page.form.registration}</Text>
                             </Button>
                         </View>
                     </Form>

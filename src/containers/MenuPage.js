@@ -12,8 +12,7 @@ import {
     List,
     ListItem
 } from 'native-base'
-import {ICONS, POSITION} from '../store/values/cafe_menu';
-import {MENU} from '../store/values/cafe_menu';
+import {ICONS } from '../store/values/cafe_menu';
 import { Dimensions,ScrollView } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
@@ -25,14 +24,14 @@ class MenuPage extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <List style={styles.list}>
-                        {POSITION.map((item, key)=>(
+                        {page.values.menu.position.map((item, key)=>(
                             <View >
                                 <ListItem itemDivider style={styles.title_container}>
                                     <Icon name={ICONS[key]} style={styles.title_icon}/>
                                     <Text key={key} style={styles.title_text}> { item } </Text>
                                 </ListItem>
-                                {MENU[key] != undefined ?
-                                    MENU[key].map((element, op)=>(
+                                {page.values.menu.menu[key] != undefined ?
+                                    page.values.menu.menu[key].map((element, op)=>(
                                             <ListItem style={styles.content}>
                                                 <Icon name={'ios-color-filter'} style={styles.content_icon}/>
                                                 <Text key={op} style={styles.content_text}> { element[0] } </Text>

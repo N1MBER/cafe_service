@@ -14,13 +14,10 @@ class LoginPage extends Component {
         const {page} = this.props;
         return (
             <View style={styles.container}>
-                {/*<View style={{flex: 1, flexBasis: 200}}/>*/}
                 <View style={styles.inside_container}>
                     <Icon style={{fontSize: 200, color: 'rgba(255,255,255,0.8)'}} name={'logo-octocat'}/>
-                    {/*<Image style={styles.logo}  source={require('../images/icons/user.png')} />*/}
                     <LoginForm />
                 </View>
-                {/*<View style={{flex: 1, flexBasis: 200}}/>*/}
             </View>
         );
     }

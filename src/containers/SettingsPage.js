@@ -37,7 +37,7 @@ class SettingsPage extends Component {
                                 this.props.set_reservation_notification(!Boolean(settings.reservation_notification))
                             }} checked={settings.reservation_notification}/>
                             <Body>
-                                <Text style={styles.text} >Reservation notification</Text>
+                                <Text style={styles.text} >{page.values.settings_page.reservation_notification}</Text>
                             </Body>
                         </ListItem>
                         <ListItem>
@@ -45,7 +45,7 @@ class SettingsPage extends Component {
                                 this.props.set_new_position_notification(!Boolean(settings.new_position_notification))
                             }} checked={settings.new_position_notification}/>
                             <Body>
-                                <Text style={styles.text} >Notification of new positions</Text>
+                                <Text style={styles.text} >{page.values.settings_page.new_position_notification}</Text>
                             </Body>
                         </ListItem>
                     </View>
@@ -60,7 +60,7 @@ class SettingsPage extends Component {
                         <ListItem onPress={()=>
                             ActionSheet.show({
                                 options: CITIES,
-                                title: 'Default city',
+                                title: page.values.settings_page.scrooler_city,
                                 cancelButtonIndex: CITIES.length - 1
                             },
                                 buttonIndex => {
@@ -72,7 +72,7 @@ class SettingsPage extends Component {
                             <View style={styles.item_container}>
                                 <Text style={styles.item}>Default city: </Text>
                                 <Text style={styles.item}>{settings.default_city !== undefined && settings.default_city !== null ?
-                                    settings.default_city : 'Not chosen'}</Text>
+                                    settings.default_city : page.values.settings_page.not_chosen}</Text>
                             </View>
                         </ListItem>
                         </Root>
@@ -88,7 +88,7 @@ class SettingsPage extends Component {
                             <ListItem onPress={()=>
                                 ActionSheet.show({
                                         options: LANGUAGES,
-                                        title: 'Language',
+                                        title: page.values.settings_page.language,
                                         cancelButtonIndex: LANGUAGES.length - 1
                                     },
                                     buttonIndex => {
@@ -99,7 +99,7 @@ class SettingsPage extends Component {
                                 <View style={styles.item_container}>
                                     <Text style={styles.item}>Language: </Text>
                                     <Text style={styles.item}>{settings.language !== undefined && settings.language !== null ?
-                                        settings.language : 'Not chosen'}</Text>
+                                        settings.language : page.values.settings_page.not_chosen}</Text>
                                 </View>
                             </ListItem>
                         </Root>
@@ -113,41 +113,41 @@ class SettingsPage extends Component {
                         <ListItem>
                                 <Text onPress={() => {
                                     Linking.openURL('https://github.com/N1MBER')
-                                }} style={styles.text}>Report an error</Text>
+                                }} style={styles.text}>{page.values.settings_page.report_error}</Text>
                         </ListItem>
                         <ListItem>
                             <Text onPress={() => {
                                 Linking.openURL('https://github.com/N1MBER')
-                            }} style={styles.text}>Ask a Question</Text>
+                            }} style={styles.text}>{page.values.settings_page.ask_question}</Text>
                         </ListItem>
                     </View>
                     <View style={styles.item_title}>
-                        <ListItem itemDivide r>
+                        <ListItem itemDivider  style={styles.item_title}>
                             <Text style={styles.title_text}>{page.values.settings_page.about_us}</Text>
                         </ListItem>
                     </View>
                     <View>
                         <ListItem>
                             <View style={styles.item_container}>
-                                <Text style={styles.item}>Technology for app </Text>
+                                <Text style={styles.item}>{page.values.settings_page.technology_app}</Text>
                                 <Text style={styles.item}>React Native</Text>
                             </View>
                         </ListItem>
                         <ListItem>
                             <View style={styles.item_container}>
-                                <Text style={styles.item}>Developer</Text>
+                                <Text style={styles.item}>{page.values.settings_page.developer}</Text>
                                 <Text style={styles.item}>N1MBER</Text>
                             </View>
                         </ListItem>
                         <ListItem>
                             <View style={styles.item_container}>
-                                <Text style={styles.item}>Version</Text>
+                                <Text style={styles.item}>{page.values.settings_page.version}</Text>
                                 <Text style={styles.item}>0.0.2</Text>
                             </View>
                         </ListItem>
                     </View>
                 </List>
-                <Text style={{paddingTop:30,paddingBottom:30,color: 'white', textAlign: 'center'}}>Designed by N1MBER in St. Peterspurg</Text>
+                <Text style={{paddingTop:30,paddingBottom:30,color: 'white', textAlign: 'center'}}>{page.values.settings_page.designed}</Text>
             </View>
         );
     }

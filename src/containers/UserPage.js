@@ -10,41 +10,55 @@ import {AppStyle} from '../store/values/app_style';
 import {
     Icon,
     Text,
-    Button
+    Button,
+    Badge
 } from 'native-base'
 class UserPage extends Component {
     render() {
-        const {page} = this.props;
+        const {page, user} = this.props;
         return (
             <View style={styles.container}>
                 <Text style={styles.title_text}>My Profile</Text>
                 <View style={styles.image_container}>
                     <Image style={styles.image} source={require('../images/icons/user.png')}/>
-                    <Text style={styles.image_text}>{page.name !== undefined ? page.name : undefined}</Text>
+                    <Text style={styles.image_text}>{user.name !== undefined ? user.name : undefined}</Text>
                 </View>
+                {user.reservation ?
+                    <View style={styles.inside_container}>
+                        <View style={styles.info}>
+                            <Badge danger><Text>!</Text></Badge>
+                            <Text onPress={() =>
+                                alert("You have a reservation for\n" +
+                                    user.reservation_date + " " + user.reservation_time + '\n' +
+                                    user.reservation_city + ' ' + user.reservation_place)}
+                                  style={styles.info_title}>Booking time coming soon</Text>
+                        </View>
+                    </View> :
+                    null
+                }
                 <View style={styles.inside_container}>
                     <View style={styles.info}>
                         <Text style={styles.info_title}>Login</Text>
                         <Text style={styles.info_value}>
-                            {page.login !== undefined ? page.login : 'None'}
+                            {user.login === undefined || user.login === null ? 'None' : user.login}
                         </Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.info_title}>Name</Text>
                         <Text style={styles.info_value}>
-                            {page.name !== undefined ? page.name : 'None'}
+                            {user.name === undefined || user.name === null ? 'None' : user.name}
                         </Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.info_title}>Email</Text>
                         <Text style={styles.info_value}>
-                            {page.email !== undefined ? page.email : 'None'}
+                            {user.email === undefined || user.email === null ? 'None' : user.email}
                         </Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.info_title}>Phone</Text>
                         <Text style={styles.info_value}>
-                            {page.phone_number !== undefined ? page.phone_number : 'None'}
+                            {user.phone_number === undefined || user.phone_number === null ? 'None' : user.phone_number}
                         </Text>
                     </View>
                 </View>
@@ -151,7 +165,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = store => {
     return {
-        page: store.page
+        page: store.page,
+        user: store.user,
     }
 };
 

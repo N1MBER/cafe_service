@@ -6,18 +6,17 @@ import {
     FooterTab,
     Button,
     Icon,
+    Badge,
+    Text
 } from 'native-base';
 import {set_page, set_page_tittle,set_previous_page} from '../actions/tittle_manager';
 import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
-import {LOCATION, LOGIN, MAIN_PAGE, MENU, RESERVATION, SETTINGS} from '../store/values/app_values';
+import { LOGIN, MAIN_PAGE, RESERVATION, SETTINGS} from '../store/values/app_values';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
-import MenuPage from '../containers/MenuPage';
-import MainPage from '../containers/MainPage';
-import UserPage from '../containers/UserPage';
 
 class AppFooter extends Component {
     constructor(props){
@@ -50,7 +49,7 @@ class AppFooter extends Component {
     }
 
     render() {
-        const {page} = this.props;
+        const {page, user} = this.props;
         return (
             <View>
                 <Footer style={styles.container}>
@@ -70,9 +69,15 @@ class AppFooter extends Component {
                         }}>
                             <Icon style={styles.icon} name='ios-today'/>
                         </Button>
-                        <Button onPress={() => {
+                        <Button badge vertical onPress={() => {
                             this.switch_page(LOGIN, page.values.header.tittle.login, page.header_name, page.page)
                         }}>
+                            {user.reservation ?
+                                <Badge>
+                                    <Text>*</Text>
+                                </Badge> : <Badge style={{opacity: 0}}>
+                                    <Text/>
+                                </Badge> }
                             <Icon style={styles.icon} name='md-person'/>
                         </Button>
                     </FooterTab>
@@ -85,7 +90,8 @@ class AppFooter extends Component {
 
 const mapStateToProps = store => {
     return {
-        page: store.page
+        page: store.page,
+        user: store.user
     }
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Dimensions, ScrollView} from 'react-native';
+import {Dimensions} from 'react-native';
 import {
     View,
     Text,
@@ -10,7 +10,6 @@ import {
     Left,
     Body,
     Thumbnail,
-    Container,
     Button
 } from 'native-base';
 import {connect} from 'react-redux';
@@ -19,6 +18,8 @@ import {
     Image
 } from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import MenuPage from './MenuPage';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -76,7 +77,11 @@ class StartPage extends Component {
                     />
                 </View>
                 <View style={styles.menu_button_container}>
-                    <Button style={styles.menu_button}>
+                    <Button style={styles.menu_button} onPress={() => {
+                        this.props.set_page_tittle(page.values.header.tittle.menu);
+                        this.props.set_page(MenuPage);
+                        this.props.set_previous_page(StartPage)
+                    }}>
                         <Text style={styles.menu_button_text}>OUR MENU</Text>
                     </Button>
                 </View>
@@ -86,7 +91,9 @@ class StartPage extends Component {
                 <View style={styles.feedback_container}>
                     <View>
                         <Image style={styles.feedback_image} source={require('../images/backgrounds/rate_back.png')}/>
-                        <Icon style={styles.feedback_icon} name='ios-chatboxes'/>
+                        <View style={styles.feedback_icon_container}>
+                            <Icon style={styles.feedback_icon} name='ios-chatbubbles'/>
+                        </View>
                         <Text style={styles.feedback_text}>Rate visit</Text>
                     </View>
                 </View>
@@ -159,8 +166,9 @@ const styles = StyleSheet.create({
     },
     menu_button_text: {
         fontSize: 25,
+        fontWeight: 'bold',
         fontStyle: 'italic',
-        color: 'black'
+        color: AppStyle.colors.blue_gray
     },
     feedback_title_text:{
         color: 'rgba(255,255,255,0.8)',
@@ -186,12 +194,20 @@ const styles = StyleSheet.create({
         marginLeft: 0.05 * windowWidth,
         borderRadius: 40,
     },
-    feedback_icon: {
-        fontSize: 0.2 * windowWidth,
+    feedback_icon_container: {
         left: 0.35*windowWidth,
         top: 0.025 * windowWidth,
         position: 'absolute',
-        color: AppStyle.colors.white
+        backgroundColor: AppStyle.colors.white,
+        width: 0.25 * windowWidth,
+        height: 0.25 * windowWidth,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 60
+    },
+    feedback_icon: {
+        fontSize: 0.2 * windowWidth,
+        color: 'black'
     },
     feedback_text: {
         fontSize: 25,
@@ -204,7 +220,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:40,
         borderTopRightRadius: 40,
         width: 0.9*windowWidth,
-        height: 0.25*windowWidth,
+        height: 0.3*windowWidth,
         opacity: 0.4
     },
 });
@@ -215,4 +231,12 @@ const mapStateToProps = store => {
     }
 };
 
-export default connect(mapStateToProps)(StartPage);
+const mapDispatchToProps = dispatch =>{
+    return{
+        set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
+        set_page: page => dispatch(set_page(page)),
+        set_previous_page: page => dispatch(set_previous_page(page)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartPage);

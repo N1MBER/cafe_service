@@ -11,6 +11,7 @@ import ReservationPage from './ReservationPage';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import MenuPage from './MenuPage';
+import RegistrationPage from './RegistrationPage';
 
 
 
@@ -26,7 +27,7 @@ class MainPage extends Component {
                 View_Page = SettingsPage;
                 break;
             case LoginPage:
-                View_Page = LoginPage;
+                View_Page = RegistrationPage;
                 break;
             case ReservationPage:
                 View_Page = ReservationPage;

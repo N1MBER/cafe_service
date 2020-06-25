@@ -15,7 +15,7 @@ import {
 
 const  initialState = {
     language: 'English',
-    default_city: 'Saint-Petersburg',
+    default_city: null,
     cities: settings_values,
     reservation_notification: true,
     new_position_notification: true

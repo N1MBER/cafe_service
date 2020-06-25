@@ -20,6 +20,7 @@ import {
 } from '../actions/settings_manager';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import {set_reservation_city} from '../actions/user_actions';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;
@@ -67,11 +68,13 @@ class SettingsPage extends Component {
                                 buttonIndex => {
                                 if(buttonIndex != CITIES.length - 1)
                                     this.props.set_default_city( CITIES[buttonIndex] );
+                                    this.props.set_reservation_city(CITIES[buttonIndex])
                                 }
                                 )}>
                             <View style={styles.item_container}>
                                 <Text style={styles.item}>Default city: </Text>
-                                <Text style={styles.item}>{settings.default_city}</Text>
+                                <Text style={styles.item}>{settings.default_city !== undefined && settings.default_city !== null ?
+                                    settings.default_city : 'Not chosen'}</Text>
                             </View>
                         </ListItem>
                         </Root>
@@ -97,7 +100,8 @@ class SettingsPage extends Component {
                                 )}>
                                 <View style={styles.item_container}>
                                     <Text style={styles.item}>Language: </Text>
-                                    <Text style={styles.item}>{settings.language}</Text>
+                                    <Text style={styles.item}>{settings.language !== undefined && settings.language !== null ?
+                                        settings.language : 'Not chosen'}</Text>
                                 </View>
                             </ListItem>
                         </Root>
@@ -194,8 +198,8 @@ const mapDispatchToProps = dispatch =>{
         set_default_city: city => dispatch(set_default_city(city)),
         set_language: language => dispatch(set_language(language)),
         set_new_position_notification: value => dispatch(set_new_position_notification(value)),
-        set_reservation_notification: value => dispatch(set_reservation_notification(value))
-
+        set_reservation_notification: value => dispatch(set_reservation_notification(value)),
+        set_reservation_city: city => dispatch(set_reservation_city(city)),
     }
 };
 

@@ -21,9 +21,14 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
-import {set_reservation_date, set_reservation_place, set_reservation_time} from '../actions/user_actions';
+import {
+    set_reservation_city,
+    set_reservation_date,
+    set_reservation_place,
+    set_reservation_time,
+} from '../actions/user_actions';
 import {AppStyle} from '../store/values/app_style';
-import {CITIES} from '../store/values/settings_values';
+import {CITIES, PLACES} from '../store/values/settings_values';
 
 const windowWidth = Dimensions.get('window').width;
 const date = new Date();
@@ -36,8 +41,11 @@ class ReservationPage extends Component {
     setDate(newDate) {
         this.props.set_reservation_date(newDate)
     }
+    setCity(city){
+        this.props.set_reservation_city(city)
+    }
     render() {
-        const {page, user} = this.props;
+        const {page, user, settings} = this.props;
         return (
                 <View style={styles.container}>
                    <Form>
@@ -137,24 +145,41 @@ class ReservationPage extends Component {
                                <Icon name='ios-map' style={styles.title_icon}/>
                                <Text style={styles.title_text}>Cafeteria</Text>
                            </View>
-                           <Button style={styles.select_city_button} onPress={()=>
-                               ActionSheet.show({
-                                       options: CITIES,
-                                       title: 'Cafeteria',
-                                       cancelButtonIndex: CITIES.length - 1
-                                   },
-                                   buttonIndex => {
-                                       if(buttonIndex != CITIES.length - 1)
-                                           this.props.set_reservation_place( CITIES[buttonIndex] );
-                                   }
-                               )}>
-                               <Text style={styles.select_city_text}>SELECT CITY</Text>
-                           </Button>
+                           {(settings.default_city === null || settings.default_city === undefined || settings.default_city === 'None')?
+                               <Button style={styles.select_city_button} onPress={()=>
+                                   ActionSheet.show({
+                                           options: CITIES,
+                                           title: 'Cities',
+                                           cancelButtonIndex: CITIES.length - 1
+                                       },
+                                       buttonIndex => {
+                                           if(buttonIndex != CITIES.length - 1)
+                                               this.props.set_reservation_city( CITIES[buttonIndex] );
+                                       }
+                                   )}>
+                                   <Text style={styles.select_city_text}>SELECT CITY</Text>
+                               </Button> : undefined
+                           }
+
+                           {!(user.reservation_city === null || user.reservation_city === undefined || user.reservation_city === 'None' ) ?
+                               <Button style={styles.select_city_button} onPress={()=>
+                                   ActionSheet.show({
+                                           options: PLACES[CITIES.indexOf(user.reservation_city)],
+                                           title: 'Cafeteria',
+                                       },
+                                       buttonIndex => {
+                                               this.props.set_reservation_place( PLACES[CITIES.indexOf(user.reservation_city)][buttonIndex] );
+                                       }
+                                   )}>
+                                   <Text style={styles.select_city_text}>SELECT PLACE</Text>
+                               </Button>:
+                               undefined
+                           }
                            <View style={{paddingBottom: 10, paddingLeft: 10}}>
                                <View style={styles.result_time_container}>
                                    <Text style={styles.result_time_text}>Place:</Text>
                                    <Text style={styles.result_time_value}>
-                                       {user.reservation_place === null ? 'Please choose place' : user.reservation_place}
+                                       {user.reservation_place === null ? 'Please choose place' : user.reservation_city + ' ' + user.reservation_place}
                                    </Text>
                                </View>
                            </View>
@@ -193,6 +218,7 @@ const mapStateToProps = store => {
     return {
         page: store.page,
         user: store.user,
+        settings: store.settings
     }
 };
 
@@ -340,6 +366,7 @@ const mapDispatchToProps = dispatch => {
         set_reservation_date: date => dispatch(set_reservation_date(date)),
         set_reservation_time: time => dispatch(set_reservation_time(time)),
         set_reservation_place: place => dispatch(set_reservation_place(place)),
+        set_reservation_city: city => dispatch(set_reservation_city(city)),
     }
 };
 

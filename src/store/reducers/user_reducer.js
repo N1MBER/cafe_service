@@ -6,7 +6,7 @@ import {
     SET_NAME,
     SET_RESERVATION_TIME,
     SET_RESERVATION_DATE,
-    SET_RESERVATION_PLACE
+    SET_RESERVATION_PLACE, SET_RESERVATION_CITY,
 } from '../../actions/user_actions';
 
 
@@ -18,7 +18,8 @@ const  initialState = {
     name: null,
     reservation_date: null,
     reservation_time: null,
-    reservation_place: null
+    reservation_place: null,
+    reservation_city: null
 };
 
 export function user_reducer(state = initialState, action) {
@@ -39,6 +40,8 @@ export function user_reducer(state = initialState, action) {
             return {...state, reservation_time: action.payload};
         case SET_RESERVATION_PLACE:
             return {...state, reservation_place: action.payload};
+        case SET_RESERVATION_CITY:
+            return {...state, reservation_city: action.payload};
         default:
             return state;
     }

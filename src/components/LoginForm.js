@@ -11,11 +11,13 @@ import {
     View,
     Text,
     TextInput,
-    StyleSheet
-}from 'react-native';
+    StyleSheet,
+    Dimensions,
+} from 'react-native';
 
 import {connect} from 'react-redux';
 import LoginButton from './LoginButton';
+import {AppStyle} from '../store/values/app_style';
 class LoginForm extends Component {
     render() {
         const {page} = this.props;
@@ -23,16 +25,21 @@ class LoginForm extends Component {
             <Content>
                 <View>
                     <Form>
-                        <View>
-                            <Item floatingLabel >
-                                <Label style={styles.text}>Email or username</Label>
-                                <TextInput />
+                        <View style={styles.input_container}>
+                            <Item >
+                                <TextInput
+                                    style={styles.input_field}
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    placeholder={'Email or username'}
+                                    autoCorrect={true}/>
                             </Item>
                         </View>
-                        <View>
-                            <Item  floatingLabel >
-                                <Label style={styles.text}>Password</Label>
+                        <View style={styles.input_container}>
+                            <Item >
                                 <TextInput
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    style={styles.input_field}
+                                    placeholder={'Password'}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
                             </Item>
@@ -45,6 +52,9 @@ class LoginForm extends Component {
     }
 }
 
+const windowWidth = Dimensions.get('window').width;
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -52,18 +62,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     input_container:{
-        width: '80%',
-        opacity: 0.8,
-        alignContent: 'center',
-        color: 'white'
+        // width: windowWidth,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     input_field: {
-        color: 'transparent',
+        fontSize: 24,
+        color: AppStyle.colors.white,
+        marginLeft: 15,
+        marginRight: 15,
+        paddingTop: 10
     },
     text: {
         color: 'white',
         backgroundColor: 'transparent',
     },
+
 });
 
 const mapStateToProps = store => {

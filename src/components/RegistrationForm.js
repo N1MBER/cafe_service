@@ -28,32 +28,43 @@ class RegistrationForm extends Component {
         return (
                 <View style={styles.container}>
                     <Form>
-                        <View>
-                            <Item floatingLabel style={styles.input_container} >
-                                <Label style={styles.text}>Email or username</Label>
-                                <TextInput  autoCorrect={true}/>
+                        <View style={styles.input_container}>
+                            <Item >
+                                <TextInput
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    style={styles.input_field}
+                                    placeholder={'Email'}
+                                    autoCorrect={true}/>
                             </Item>
                         </View>
-                        <View>
-                            <Item floatingLabel style={styles.input_container}>
-                                <Label style={styles.text}>Password</Label>
+                        <View style={styles.input_container}>
+                            <Item >
                                 <TextInput
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    style={styles.input_field}
+                                    placeholder={'Password'}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
                             </Item>
                         </View>
-                        <View>
-                            <Item floatingLabel style={styles.input_container}>
-                                <Label style={styles.text}>Repeat password</Label>
+                        <View style={styles.input_container}>
+                            <Item >
                                 <TextInput
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    style={styles.input_field}
+                                    placeholder={'Repeat password'}
                                     secureTextEntry={true}
                                     autoCorrect={true}/>
                             </Item>
                         </View>
-                        <View>
-                            <Item floatingLabel style={styles.input_container}>
-                                <Label style={styles.text}>Your phone</Label>
+                        <View style={styles.input_container}>
+                            <Item >
                                 <TextInput
+                                    placeholderTextColor={AppStyle.colors.white}
+                                    style={styles.input_field}
+                                    placeholder={'Your phone'}
+                                    secureTextEntry={true}
+                                    autoCorrect={true}
                                     keyboardType={'phone-pad'}/>
                             </Item>
                         </View>
@@ -120,14 +131,26 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    input_container:{
-        alignContent: 'center',
-        color: 'white',
-        marginLeft: 0,
-    },
+    // input_container:{
+    //     alignContent: 'center',
+    //     color: 'white',
+    //     marginLeft: 0,
+    // },
     text: {
         color: 'white',
         backgroundColor: 'transparent',
+    },
+    input_container:{
+        // width: windowWidth,
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    input_field: {
+        fontSize: 24,
+        color: AppStyle.colors.white,
+        // marginLeft: 15,
+        // marginRight: 15,
+        paddingTop: 10
     },
 });
 

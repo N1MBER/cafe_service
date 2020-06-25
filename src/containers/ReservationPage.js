@@ -74,10 +74,12 @@ class ReservationPage extends Component {
                                    </Item>
                                </View>
                                <View>
+                                   <Item >
                                    <TextInput style={styles.input_field}
                                               placeholder={"Phone number"}
                                               onChangeText={text => this.props.set_reservation_phone_number(text)}
                                               keyboardType={'phone-pad'} />
+                                   </Item>
                                </View>
                            </View>
                        </View>
@@ -99,7 +101,6 @@ class ReservationPage extends Component {
                                    androidMode="default"
                                    textStyle={styles.date_picker}
                                    animationType={"slide"}
-
                                    onDateChange={this.setDate}
                                    placeHolderText="SELECT DATE">
                                    placeHolderTextStyle={styles.date_picker}
@@ -207,8 +208,8 @@ class ReservationPage extends Component {
                                    autoCorrect={true}
                                    multiline={true}
                                    numberOfLines={10}
-                                   onChangeText={text => this.props.set_wishes(text)}/>
-                               placeholder={'Your wishes'}
+                                   onChangeText={text => this.props.set_wishes(text)}
+                                   placeholder={'Your wishes'}
                                    placeholderTextColor={'rgba(0,0,0,0.8)'}
                                    />
                            </View>

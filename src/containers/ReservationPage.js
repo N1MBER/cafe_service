@@ -23,7 +23,6 @@ import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
 import {set_reservation_date, set_reservation_place, set_reservation_time} from '../actions/user_actions';
 import {AppStyle} from '../store/values/app_style';
-import {ICONS} from '../store/values/cafe_menu';
 import {CITIES} from '../store/values/settings_values';
 
 const windowWidth = Dimensions.get('window').width;

@@ -15,7 +15,7 @@ class RegistrationPage extends Component {
         const {page} = this.props;
         return (
             <View style={styles.container}>
-                <Icon style={{fontSize: 200, flex: 1, color: 'rgba(0,0,0,0.8)'}} name={'logo-octocat'}/>
+                <Icon style={styles.logo} name={'logo-ionitron'}/>
                 <View style={styles.inside_container}>
                     <RegistrationForm />
                 </View>
@@ -35,24 +35,22 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: windowHeight
+        height: 0.8 * windowHeight
     },
     inside_container: {
         flex: 3,
         width: windowWidth,
-        height: windowHeight /2,
-        // flexBasis: 400,
-        // paddingTop: 50,
-        // paddingBottom: 10 ,
+        paddingTop: 10,
+        paddingBottom: 10 ,
         backgroundColor: AppStyle.colors.blue_gray,
         alignItems: 'center',
-        marginBottom: 0
-
-        // borderRadius: 50
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
     },
     logo: {
-        width: 200,
-        height: 200,
+        fontSize: 250,
+        flex: 2,
+        color: 'rgba(0,0,0,0.8)',
     },
 });
 

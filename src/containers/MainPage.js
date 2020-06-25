@@ -47,7 +47,6 @@ class MainPage extends Component {
                 break;
         }
 
-
         return (
             <Container >
                 <View>

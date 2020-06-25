@@ -35,7 +35,7 @@ class AppFooter extends Component {
                 break;
             case LOGIN:
                 this.props.set_page_tittle(name);
-                this.props.set_page(UserPage);
+                this.props.set_page(LoginPage);
                 break;
             case RESERVATION:
                 this.props.set_page_tittle(name);

@@ -12,12 +12,13 @@ import {
 import {connect} from 'react-redux';
 import {AppStyle} from '../store/values/app_style';
 import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
-import {LOGIN, MAIN_PAGE, REGISTRATION, RESERVATION, SETTINGS} from '../store/values/app_values';
+import {LOGIN, MAIN_PAGE, REGISTRATION, RESERVATION, SETTINGS, USER} from '../store/values/app_values';
 import SettingsPage from '../containers/SettingsPage';
 import LoginPage from '../containers/LoginPage';
 import ReservationPage from '../containers/ReservationPage';
 import StartPage from '../containers/StartPage';
 import RegistrationPage from '../containers/RegistrationPage';
+import UserPage from '../containers/UserPage';
 class LoginButton extends Component {
     switch_page(page, name, header, prev_page){
         if (name != header){
@@ -27,6 +28,10 @@ class LoginButton extends Component {
             case REGISTRATION:
                 this.props.set_page_tittle(name);
                 this.props.set_page(RegistrationPage);
+                break;
+            case USER:
+                this.props.set_page_tittle(name);
+                this.props.set_page(UserPage);
                 break;
             case LOGIN:
                 this.props.set_page_tittle(name);
@@ -41,7 +46,9 @@ class LoginButton extends Component {
             <View style={styles.content}>
                 <View style={styles.container}>
                     <View style={styles.element}>
-                        <Button style={styles.button} >
+                        <Button style={styles.button} onPress={() =>
+                            this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page)
+                        }>
                             <Text style={styles.text_button}>{String(page.values.login_page.login)}</Text>
                         </Button>
                     </View>

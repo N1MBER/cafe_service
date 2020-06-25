@@ -1,12 +1,11 @@
 export const SETTINGS = 'SETTINGS';
 export const RESERVATION = 'RESERVATION';
 export const LOGIN = 'LOGIN';
-export const REGISTER = 'REGISTER';
-export const CAFE = 'CAFE';
 export const MAIN_PAGE = 'MAIN_PAGE';
 export const LOCATION = 'LOCATION';
 export const MENU = 'MENU';
 export const REGISTRATION ='REGISTRATION';
+export const USER = 'USER';
 
 
 
@@ -19,7 +18,8 @@ export const app_values = {
             register: 'Registration',
             reservation: 'Reservation',
             location: 'Map',
-            menu: 'Menu'
+            menu: 'Menu',
+            user: 'My profile'
         }
     },
     login_page:{

@@ -21,7 +21,6 @@ import {StyleSheet, Linking,Alert} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {set_reservation_city} from '../actions/user_actions';
 import {set_page_lang} from '../actions/tittle_manager';
-import {languages} from '../store/reducers/settings_reducer';
 import {russian_language} from '../store/values/Localization/russian_language';
 class SettingsPage extends Component {
     render() {
@@ -91,16 +90,14 @@ class SettingsPage extends Component {
                         <Root>
                             <ListItem onPress={()=>
                                 ActionSheet.show({
-                                        options: LANGUAGES,
+                                        options: LANGUAGES[0],
                                         title: page.values.settings_page.language,
-                                        cancelButtonIndex: LANGUAGES.length - 1
+                                        cancelButtonIndex: LANGUAGES[0].length - 1
                                     },
                                     buttonIndex => {
-                                        if(buttonIndex != LANGUAGES.length - 1) {
-                                            alert(LANGUAGES[buttonIndex])
-                                            this.props.set_language(1);
-                                            // alert(languages[buttonIndex]);
-                                            // this.props.set_page_lang(russian_language);
+                                        if(buttonIndex != LANGUAGES[0].length - 1) {
+                                            this.props.set_language(LANGUAGES[0][buttonIndex]);
+                                            this.props.set_page_lang(LANGUAGES[0][buttonIndex]);
                                         }
                                     }
                                 )}>

@@ -7,7 +7,7 @@ import {
     Icon, Left, Body, Title, Right,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {get_title, set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
 import MenuPage from '../containers/MenuPage';
@@ -39,6 +39,8 @@ class AppHeader extends Component {
         );
     }
 }
+const windowWidth = Dimensions.get('window').width;
+
 
 const styles = StyleSheet.create({
     container:{
@@ -50,7 +52,8 @@ const styles = StyleSheet.create({
         color: 'rgba(255,255,255,0.8)',
         fontFamily: 'Arial',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        width: 0.6*windowWidth
     },
     button: {
         flex: 0.2

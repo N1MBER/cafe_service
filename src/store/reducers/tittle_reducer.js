@@ -8,13 +8,14 @@ import {app_values} from '../values/app_values';
 import {english_language} from '../values/Localization/english_language';
 import {SET_LANGUAGE} from '../../actions/settings_manager';
 import {russian_language} from '../values/Localization/russian_language';
+import {LANGUAGES} from '../values/settings_values';
 
 
 const  initialState = {
     header_name: app_values.header.tittle.cafe,
     page: StartPage,
     previous_page: StartPage,
-    values: russian_language
+    values: english_language
 };
 
 export function tittle_reducer(state = initialState, action) {
@@ -26,7 +27,15 @@ export function tittle_reducer(state = initialState, action) {
         case  SET_PREVIOUS_PAGE:
             return {...state, previous_page: action.payload};
         case  SET_LANGUAGE:
-            return {...state, values: action.payload};
+            switch (action.payload) {
+                case LANGUAGES[0][0]:
+                    return {...state, values: LANGUAGES[1][0]};
+                case LANGUAGES[0][1]:
+                    return {...state, values: LANGUAGES[1][1]};
+                default:
+                    return {...state, values: english_language};
+            }
+            break;
         default:
             return state
     }

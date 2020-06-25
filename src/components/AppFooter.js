@@ -17,6 +17,7 @@ import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import MenuPage from '../containers/MenuPage';
 import MainPage from '../containers/MainPage';
+import UserPage from '../containers/UserPage';
 
 class AppFooter extends Component {
     constructor(props){
@@ -34,7 +35,7 @@ class AppFooter extends Component {
                 break;
             case LOGIN:
                 this.props.set_page_tittle(name);
-                this.props.set_page(LoginPage);
+                this.props.set_page(UserPage);
                 break;
             case RESERVATION:
                 this.props.set_page_tittle(name);

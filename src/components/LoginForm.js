@@ -58,7 +58,7 @@ class LoginForm extends Component {
         if(!re.test(login)){
             flag = false;
             alert("Mail entered incorrectly")
-        }else if(password.length < 11){
+        }else if(password.length < 6){
             flag = false;
             alert("Password is too short")
         }

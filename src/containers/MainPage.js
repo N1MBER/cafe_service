@@ -27,13 +27,16 @@ class MainPage extends Component {
                 View_Page = SettingsPage;
                 break;
             case LoginPage:
-                View_Page = RegistrationPage;
+                View_Page = LoginPage;
                 break;
             case ReservationPage:
                 View_Page = ReservationPage;
                 break;
             case MenuPage:
                 View_Page = MenuPage;
+                break;
+            case RegistrationPage:
+                View_Page = RegistrationPage;
                 break;
             default:
                 View_Page = StartPage;

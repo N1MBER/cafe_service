@@ -6,6 +6,7 @@ export const CAFE = 'CAFE';
 export const MAIN_PAGE = 'MAIN_PAGE';
 export const LOCATION = 'LOCATION';
 export const MENU = 'MENU';
+export const REGISTRATION ='REGISTRATION';
 
 
 

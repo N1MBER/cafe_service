@@ -11,20 +11,45 @@ import {
 
 import {connect} from 'react-redux';
 import {AppStyle} from '../store/values/app_style';
+import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {LOGIN, MAIN_PAGE, REGISTRATION, RESERVATION, SETTINGS} from '../store/values/app_values';
+import SettingsPage from '../containers/SettingsPage';
+import LoginPage from '../containers/LoginPage';
+import ReservationPage from '../containers/ReservationPage';
+import StartPage from '../containers/StartPage';
+import RegistrationPage from '../containers/RegistrationPage';
 class LoginButton extends Component {
+    switch_page(page, name, header, prev_page){
+        if (name != header){
+            this.props.set_previous_page(prev_page)
+        }
+        switch (page) {
+            case REGISTRATION:
+                this.props.set_page_tittle(name);
+                this.props.set_page(RegistrationPage);
+                break;
+            case LOGIN:
+                this.props.set_page_tittle(name);
+                this.props.set_page(LoginPage);
+                break;
+        }
+
+    }
     render() {
         const {page} = this.props;
         return (
             <View style={styles.content}>
                 <View style={styles.container}>
                     <View style={styles.element}>
-                        <Button style={styles.button}>
+                        <Button style={styles.button} >
                             <Text style={styles.text_button}>{String(page.values.login_page.login)}</Text>
                         </Button>
                     </View>
                     <View style={{flex: 1, flexBasis: 20}}/>
                     <View style={styles.element}>
-                        <Button style={styles.button} >
+                        <Button style={styles.button} onPress={() =>
+                            this.switch_page(REGISTRATION, page.values.header.tittle.register, page.header_name, page.page)
+                        }>
                             <Text style={styles.text_button}>{String(page.values.login_page.registration)}</Text>
                         </Button>
                     </View>
@@ -34,7 +59,7 @@ class LoginButton extends Component {
                 </View>
                 <View style={styles.icon_container}>
                     <View>
-                        <Button style={styles.icon_button_facebook}>
+                        <Button style={styles.icon_button_facebook} >
                             <Icon style={styles.icon} name='logo-facebook'/>
                         </Button>
                     </View>
@@ -130,4 +155,12 @@ const mapStateToProps = store => {
     }
 };
 
-export default connect(mapStateToProps)(LoginButton);
+const mapDispatchToProps = dispatch =>{
+    return{
+        set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
+        set_page: page => dispatch(set_page(page)),
+        set_previous_page: page => dispatch(set_previous_page(page)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginButton);

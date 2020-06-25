@@ -7,6 +7,7 @@ export const SET_RESERVATION_DATE = 'SET_RESERVATION_DATE';
 export const SET_RESERVATION_TIME = 'SET_RESERVATION_TIME';
 export const SET_RESERVATION_PLACE = 'SET_RESERVATION_PLACE';
 export const SET_RESERVATION_CITY = 'SET_RESERVATION_CITY';
+export const SET_RESERVATION ='SET_RESERVATION';
 
 export function set_login(login) {
     return{
@@ -40,6 +41,13 @@ export function set_reservation_time(time) {
     return{
         type: SET_RESERVATION_TIME,
         payload: time
+    }
+}
+
+export function set_reservation(flag) {
+    return{
+        type: SET_RESERVATION,
+        payload: flag
     }
 }
 

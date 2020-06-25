@@ -4,14 +4,11 @@ import {
     Form,
     View,
     Item,
-    Label,
     DatePicker,
     Root,
-    List,
     Picker,
     Icon,
     Button,
-    ListItem,
     ActionSheet
 } from 'native-base';
 import {
@@ -23,9 +20,9 @@ import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
 import {
     set_reservation_city,
-    set_reservation_date,
+    set_reservation_date, set_reservation_name, set_reservation_phone_number,
     set_reservation_place,
-    set_reservation_time,
+    set_reservation_time, set_wishes,
 } from '../actions/user_actions';
 import {AppStyle} from '../store/values/app_style';
 import {CITIES, PLACES} from '../store/values/settings_values';
@@ -38,14 +35,28 @@ class ReservationPage extends Component {
         super(props);
         this.setDate = this.setDate.bind(this);
     }
+
     setDate(newDate) {
         this.props.set_reservation_date(newDate)
     }
-    setCity(city){
-        this.props.set_reservation_city(city)
+
+    check_data(name, number, date, time, city, place, wishes){
+        if(!(!/^(-?\d+)([.,]\d+)?$/.test(name))){
+            alert("The name is entered incorrectly.");
+            return false;
+        }else if(!/^(-?\d+)([.,]\d+)?$/.test(number)){
+            alert("The phone number is entered incorrectly.");
+            return false;
+        }
+        else if(date === null || time == null || city === null || place === null){
+            alert("No time or place selected.");
+            return false;
+        }
+        return true;
     }
+
     render() {
-        const {page, user, settings} = this.props;
+        const {user, settings} = this.props;
         return (
                 <View style={styles.container}>
                    <Form>
@@ -55,17 +66,18 @@ class ReservationPage extends Component {
                                <Text style={styles.title_text}>Contact data</Text>
                            </View>
                            <View style={styles.input_container}>
-                               <View style>
-                                   <Item floatingLabel>
-                                       <Label>Your name</Label>
-                                       <TextInput />
+                               <View>
+                                   <Item >
+                                       <TextInput style={styles.input_field}
+                                           placeholder={"Your name"}
+                                           onChangeText={text => this.props.set_reservation_name(text)}/>
                                    </Item>
                                </View>
-                               <View style={{marginTop: 10}}>
-                                   <Item floatingLabel>
-                                       <Label>Phone number</Label>
-                                       <TextInput keyboardType={'phone-pad'} />
-                                   </Item>
+                               <View>
+                                   <TextInput style={styles.input_field}
+                                              placeholder={"Phone number"}
+                                              onChangeText={text => this.props.set_reservation_phone_number(text)}
+                                              keyboardType={'phone-pad'} />
                                </View>
                            </View>
                        </View>
@@ -108,7 +120,7 @@ class ReservationPage extends Component {
                                                placeholderIconColor="#007aff"
                                                onValueChange={this.props.set_reservation_time}
                                            >
-                                               {DATE_TIME.map((item, key) => (
+                                               {DATE_TIME.map((item) => (
                                                    <Picker.Item  label={item} value={item} />))}
                                            </Picker>
                                        </Item>
@@ -153,7 +165,7 @@ class ReservationPage extends Component {
                                            cancelButtonIndex: CITIES.length - 1
                                        },
                                        buttonIndex => {
-                                           if(buttonIndex != CITIES.length - 1)
+                                           if(buttonIndex !== CITIES.length - 1)
                                                this.props.set_reservation_city( CITIES[buttonIndex] );
                                        }
                                    )}>
@@ -195,13 +207,17 @@ class ReservationPage extends Component {
                                    autoCorrect={true}
                                    multiline={true}
                                    numberOfLines={10}
-                                   placeholder={'Your wishes'}
+                                   onChangeText={text => this.props.set_wishes(text)}/>
+                               placeholder={'Your wishes'}
                                    placeholderTextColor={'rgba(0,0,0,0.8)'}
                                    />
                            </View>
                        </View>
                        <View>
-                           <Button style={styles.reservation_button}>
+                           <Button style={styles.reservation_button}  onPress={() => {
+                           this.check_data(user.reservation_name, user.reservation_phone_number,
+                           user.reservation_date, user.reservation_time, user.reservation_city,
+                           user.reservation_place, user.wishes)}}>
                                <View style={styles.reservation_button_container}>
                                    <Icon style={styles.reservation_button_icon} name={'ios-clock'}/>
                                    <Text style={styles.reservation_button_text}>MAKE A RESERVATION</Text>
@@ -315,6 +331,13 @@ const styles = StyleSheet.create({
 
         elevation: 14,
     },
+    input_field: {
+        fontSize: 24,
+        color: AppStyle.colors.gray,
+        marginLeft: 15,
+        marginRight: 15,
+        paddingTop: 10
+    },
     title_text:{
         color: 'rgba(255,255,255,0.8)',
         fontSize: 25,
@@ -367,6 +390,9 @@ const mapDispatchToProps = dispatch => {
         set_reservation_time: time => dispatch(set_reservation_time(time)),
         set_reservation_place: place => dispatch(set_reservation_place(place)),
         set_reservation_city: city => dispatch(set_reservation_city(city)),
+        set_reservation_name: name => dispatch(set_reservation_name(name)),
+        set_reservation_phone_number:number => dispatch(set_reservation_phone_number(number)),
+        set_wishes: wishes => dispatch(set_wishes(wishes)),
     }
 };
 

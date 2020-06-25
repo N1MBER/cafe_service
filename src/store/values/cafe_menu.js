@@ -114,4 +114,42 @@ export const CHIN_MENU = [
 
 export const CHIN_POSITION = ['咖啡','茶','甜点','零食'];
 
+export const GER_MENU = [
+    //========
+    // COFFEE
+    //========
+    [   ['Espresso', 2.00],
+        ['Americano', 10],
+        ['Latté',2],
+        ['Mokka',1],
+        ['Cappuccino', 2],
+        ['Caramel Macchiato', 2],
+        ['Toffee Nuss Latte', 2]
+    ],
+    //=====
+    // TEA
+    //=====
+    [   ['Matcha', 2],
+        ['Zitrusfrüchte', 2],
+        ['Earl Grey', 2],
+        ['Pfefferminze', 2]
+    ],
+    //=========
+    // DESSERT
+    //=========
+    [   ['Zitronen-Käsekuchen', 3],
+        ['Choco Chip Kekse', 2],
+        ['Fudge Brownies', 2],
+        ['Blaubeermuffin', 2]
+    ],
+    //============
+    // MINI BITES
+    //============
+    [   ['Croissant',2],
+        ['Panini',2]
+    ]
+];
+
+export const GER_POSITION = ['KAFFEE','TEE','DESSERT','MINI BISSEN'];
+
 export const ICONS = ['ios-cafe','ios-color-fill','ios-ice-cream','pizza'];

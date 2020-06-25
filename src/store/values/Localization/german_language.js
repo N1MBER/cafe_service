@@ -1,114 +1,114 @@
-import {ENG_MENU, ENG_POSITION} from '../cafe_menu';
+import {GER_MENU, GER_POSITION} from '../cafe_menu';
 
 export const german_language = {
     header:{
         tittle:{
-            cafe: 'Cafeteria',
-            settings: 'Settings',
-            login: 'Sign in',
-            register: 'Registration',
-            reservation: 'Reservation',
-            location: 'Map',
-            menu: 'Menu',
-            user: 'My profile'
+            cafe: 'Die Cafeteria',
+            settings: 'Die Einstellungen',
+            login: 'Einloggen',
+            register: 'Anmeldung',
+            reservation: 'Reservierung',
+            location: 'Karte',
+            menu: 'Speisekarte',
+            user: 'Mein Profil'
         }
     },
     login_page:{
         form:{
-            password: 'Password',
+            password: 'Passwort',
             email: 'Email',
-            login: 'LOG IN',
-            registration: 'SIGN UP',
-            other_variant: 'Sign in with social networks',
+            login: 'ANMELDUNG',
+            registration: 'ANMELDEN',
+            other_variant: 'Melden Sie sich mit sozialen Netzwerken an',
 
         },
-        forgot: 'FORGOT PASSWORD?',
+        forgot: 'PASSWORT VERGESSE?',
         notification:{
-            mail_notification: 'Mail entered incorrectly',
-            password_notification: 'Password is too short'
+            mail_notification: 'Mail falsch eingegeben',
+            password_notification: 'Das Passwort ist zu kurz'
         }
     },
     settings_page:{
-        language: 'Language',
-        notification: 'Notification',
-        about_us: 'About us',
-        support: 'Support',
-        default_city: 'Default city',
-        reservation_notification: 'Reservation notification',
-        new_position_notification: 'Notification of new positions',
-        scrooler_city: 'Default city',
-        not_chosen: 'Not chosen',
-        report_error: 'Report an error',
-        ask_question: 'Ask a Question',
-        technology_app: 'Technology for app',
-        developer: 'Developer',
-        version: 'Version',
-        designed: 'Designed by N1MBER in St. Petersburg'
+        language: 'Sprache',
+        notification: 'Benachrichtigung',
+        about_us: 'Über uns',
+        support: 'Unterstützung',
+        default_city: 'Standardstadt',
+        reservation_notification: 'Reservierungsbenachrichtigung',
+        new_position_notification: 'Benachrichtigung über neue Positionen',
+        scrooler_city: 'Standardstadt',
+        not_chosen: 'Nicht gewählt',
+        report_error: 'Einen Fehler melden',
+        ask_question: 'Stelle eine Frage',
+        technology_app: 'Technologie für App',
+        developer: 'Entwickler',
+        version: 'Ausführung',
+        designed: 'Entworfen von N1MBER in St. Petersburg'
     },
     menu: {
-        menu: ENG_MENU,
-        position: ENG_POSITION
+        menu: GER_MENU,
+        position: GER_POSITION
     },
     registration_page:{
         notification:{
-            mail: 'Mail entered incorrectly',
-            password: "Password is too short",
-            repeat_password: 'Password mismatch',
-            phone_number: 'The phone number is entered incorrectly.',
-            default_city: 'Please choose default city'
+            mail: 'Mail falsch eingegeben',
+            password: "Das Passwort ist zu kurz",
+            repeat_password: 'Die Passwörter stimmen nicht überei',
+            phone_number: 'Die Telefonnummer ist falsch eingegeben',
+            default_city: 'Bitte wählen Sie Standardstadt'
         },
         form:{
-            password: 'Password',
+            password: 'Passwort',
             email: 'Email',
-            repeat_password: 'Repeat password',
-            phone: 'Your phone',
-            default_city: 'DEFAULT CITY',
-            registration: 'REGISTRATION'
+            repeat_password: 'Passwort wiederholen',
+            phone: 'Dein Telefon',
+            default_city: 'Standardstadt',
+            registration: 'ANMELDUNG'
         }
     },
     reservation_page:{
         notification:{
-            name: 'The name is entered incorrectly.',
-            phone_number: 'The phone number is entered incorrectly.',
-            time_and_place: 'No time or place selected.'
+            name: 'Der Name ist falsch eingegeben',
+            phone_number: 'Die Telefonnummer ist falsch eingegeben',
+            time_and_place: 'Keine Zeit oder Ort ausgewählt'
         },
         form:{
-            contact_data: 'Contact data',
-            name: 'Your name',
-            phone: 'Phone number',
-            booking_time: 'Booking time',
-            select_date: 'SELECT DATE',
-            pick_me: 'PICK TIME',
-            select_time: 'Select time',
-            date: 'Date:',
-            not_chosen: 'Not chosen',
-            time: 'Time:',
-            cities: 'Cities',
-            select_city: 'SELECT CITY',
-            select_place: 'SELECT PLACE',
-            place: 'Place:',
-            choose_place: 'Please choose a place',
-            wishes: 'Wishes to order',
-            your_wishes: 'Your wishes',
-            make_reservation: 'MAKE A RESERVATION'
+            contact_data: 'Kontaktdaten',
+            name: 'Dein Name',
+            phone: 'Telefonnummer',
+            booking_time: 'Buchungszeit',
+            select_date: 'DATUM AUSWÄHLEN',
+            pick_me: 'ZEIT AUSWÄHLEN',
+            select_time: 'Zeit auswählen',
+            date: 'Datum:',
+            not_chosen: 'Nicht gewählt',
+            time: 'Zeit:',
+            cities: 'Städte',
+            select_city: 'STADT WÄHLEN',
+            select_place: 'PLATZ AUSWÄHLEN',
+            place: 'Platz:',
+            choose_place: 'Bitte wählen Sie einen Ort',
+            wishes: 'Wünsche zu bestellen',
+            your_wishes: 'Deine Wünsche',
+            make_reservation: 'RESERVIERUNG MACHEN'
         }
     },
     start_page:{
-        our_menu: 'OUR MENU',
-        feedback: 'Give feedback',
-        rate: 'Rate visit'
+        our_menu: 'UNSER MENÜ',
+        feedback: 'Feedback geben',
+        rate: 'Besuch bewerten'
     },
     user_page: {
-        my_profile: 'My Profile',
-        notification_reservation: 'You have a reservation for',
-        booking_time: 'Booking time coming soon',
-        login: 'Login',
+        my_profile: 'Mein Profil',
+        notification_reservation: 'Sie haben eine Reservierung für',
+        booking_time: 'Buchungszeit kommt bald',
+        login: 'Anmeldung',
         name: 'Name',
         email: 'Email',
-        phone: 'Phone',
-        change_phone: 'CHANGE PHONE NUMBER',
-        change_password: 'CHANGE PASSWORD',
-        none: 'None'
+        phone: 'Telefon',
+        change_phone: 'TELEFONNUMMER ÄNDERN',
+        change_password: 'ÄNDERE DAS PASSWORT',
+        none: 'Keiner'
     },
     icon:{
         login_page: {

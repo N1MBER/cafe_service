@@ -18,7 +18,6 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
-import LoginButton from './LoginButton';
 import {CITIES} from '../store/values/settings_values';
 import {set_default_city} from '../actions/settings_manager';
 import {AppStyle} from '../store/values/app_style';

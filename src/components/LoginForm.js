@@ -40,6 +40,36 @@ class LoginForm extends Component {
                 break;
         }
     }
+
+    constructor(props){
+        super(props);
+        this.state = {login: null, password: null}
+    }
+
+    setLogin(login){
+        this.setState({
+            login: login
+        })
+    }
+
+    checkData(login, password){
+        let flag = true;
+        let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if(!re.test(login)){
+            flag = false;
+            alert("Mail entered incorrectly")
+        }else if(password.length < 11){
+            flag = false;
+            alert("Password is too short")
+        }
+    }
+
+    setPassword(password){
+        this.setState({
+            password: password
+        })
+    }
+
     render() {
         const {page} = this.props;
         return (
@@ -49,15 +79,17 @@ class LoginForm extends Component {
                         <View style={styles.input_container}>
                             <Item >
                                 <TextInput
+                                    onChangeText={login => this.setLogin(login)}
                                     style={styles.input_field}
                                     placeholderTextColor={AppStyle.colors.white}
-                                    placeholder={'Email or username'}
+                                    placeholder={'Email'}
                                     autoCorrect={true}/>
                             </Item>
                         </View>
                         <View style={styles.input_container}>
                             <Item >
                                 <TextInput
+                                    onChangeText={password => this.setPassword(password)}
                                     placeholderTextColor={AppStyle.colors.white}
                                     style={styles.input_field}
                                     placeholder={'Password'}
@@ -70,9 +102,10 @@ class LoginForm extends Component {
                 <View style={styles.content}>
                     <View style={styles.container}>
                         <View style={styles.element}>
-                            <Button style={styles.button} onPress={() =>
+                            <Button style={styles.button} onPress={() => {
+                                this.checkData(this.state.login, this.state.password)
                                 this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page)
-                            }>
+                            }}>
                                 <Text style={styles.text_button}>{String(page.values.login_page.login)}</Text>
                             </Button>
                         </View>

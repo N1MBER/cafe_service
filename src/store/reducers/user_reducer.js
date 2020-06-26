@@ -11,7 +11,7 @@ import {
     SET_RESERVATION,
     SET_RESERVATION_NAME,
     SET_RESERVATION_PHONE_NUMBER,
-    SET_WISHES,
+    SET_WISHES, AUTHORIZATION,
 } from '../../actions/user_actions';
 
 
@@ -59,6 +59,8 @@ export function user_reducer(state = initialState, action) {
             return {...state, reservation_phone_number: action.payload};
         case SET_WISHES:
             return {...state, wishes: action.payload};
+        case AUTHORIZATION:
+            return {...state, authorized: action.payload};
         default:
             return state;
     }

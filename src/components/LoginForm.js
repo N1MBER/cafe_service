@@ -10,7 +10,6 @@ import {
     Text,
     TextInput,
     StyleSheet,
-    Dimensions,
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -20,9 +19,10 @@ import RegistrationPage from '../containers/RegistrationPage';
 import UserPage from '../containers/UserPage';
 import LoginPage from '../containers/LoginPage';
 import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {authorization} from '../actions/user_actions';
 class LoginForm extends Component {
     switch_page(page, name, header, prev_page){
-        if (name != header){
+        if (name !== header){
             this.props.set_previous_page(prev_page)
         }
         switch (page) {
@@ -57,10 +57,20 @@ class LoginForm extends Component {
         let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if(!re.test(login)){
             flag = false;
-            alert(notification.mail_notification)
+            alert(notification.mail_notification);
+        }else if(password === null){
+            flag = false;
+            alert(notification.password_notification);
         }else if(password.length < 6){
             flag = false;
-            alert(notification.password_notification)
+            alert(notification.password_notification);
+        }
+        if(flag){
+            let user_information = {
+                login: login,
+                password: password
+            };
+            this.props.authorization(user_information);
         }
     }
 
@@ -103,8 +113,8 @@ class LoginForm extends Component {
                     <View style={styles.container}>
                         <View style={styles.element}>
                             <Button style={styles.button} onPress={() => {
-                                this.checkData(this.state.login, this.state.password, page.values.login_page.notification)
-                                this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page)
+                                this.checkData(this.state.login, this.state.password, page.values.login_page.notification);
+                                this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page);
                             }}>
                                 <Text style={styles.text_button}>{String(page.values.login_page.form.login)}</Text>
                             </Button>
@@ -143,8 +153,6 @@ class LoginForm extends Component {
         );
     }
 }
-
-const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     button:{
@@ -241,6 +249,7 @@ const mapDispatchToProps = dispatch =>{
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
         set_page: page => dispatch(set_page(page)),
         set_previous_page: page => dispatch(set_previous_page(page)),
+        authorization: info => dispatch(authorization(info)),
     }
 };
 

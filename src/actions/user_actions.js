@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const SET_LOGIN = 'SET_LOGIN';
 export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_EMAIL = 'SET_EMAIL';
@@ -13,35 +11,40 @@ export const SET_RESERVATION ='SET_RESERVATION';
 export const SET_RESERVATION_NAME = 'SET_RESERVATION_NAME';
 export const SET_RESERVATION_PHONE_NUMBER = 'SET_RESERVATION_PHONE_NUMBER';
 export const SET_WISHES = 'SET_WISHES';
+export const AUTHORIZATION = 'AUTHORIZATION';
 
-export function login(butch) {
+export function authorization(user_info) {
     return dispatch => {
-        let header = 'Basic ' + btoa(butch.username + ':' + butch.password);
-        axios({
-            url: 'http://localhost:8080/login',
-            method: 'post',
-            headers: {
-                Authorization: header
+        fetch('http://localhost:8080/authorization',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
             },
-        })
-            .then(result => {
-                console.log(result);
+            body: JSON.stringify(user_info)
+        }).then(result => {
                 if (result.status == 200) {
-                    localStorage.setItem("loginIn", header);
+                    dispatch({
+                        type: AUTHORIZATION,
+                        payload: true,
+                    });
+                    dispatch({
+                        type: SET_LOGIN,
+                        payload: user_info.login,
+                    });
                 } else {
-
+                    dispatch({
+                        type: AUTHORIZATION,
+                        payload: false,
+                    });
                 }
-            })
-            .catch(result => {
-                console.log(result);
+            }
+        ).catch(result => {
+            alert(result);
+            dispatch({
+                type: AUTHORIZATION,
+                payload: false,
             });
-    }
-}
-
-export function set_login(login) {
-    return{
-        type: SET_LOGIN,
-        payload: login
+        });
     }
 }
 

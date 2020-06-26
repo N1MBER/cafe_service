@@ -1,7 +1,6 @@
 import {
     SET_PAGE,
     SET_PAGE_TITTLE,
-    SET_PREVIOUS_PAGE,
 } from '../../actions/tittle_manager';
 import StartPage from '../../containers/StartPage';
 import {app_values} from '../values/app_values';
@@ -13,9 +12,17 @@ import {LANGUAGES} from '../values/settings_values';
 const  initialState = {
     header_name: app_values.header.tittle.cafe,
     page: StartPage,
-    previous_page: StartPage,
+    previous_page: [],
     values: english_language
 };
+
+export function set_prev_page(element) {
+    initialState.previous_page.push(element)
+}
+export function get_prev_page() {
+    return initialState.previous_page.pop();
+
+}
 
 export function tittle_reducer(state = initialState, action) {
     switch (action.type) {
@@ -23,8 +30,6 @@ export function tittle_reducer(state = initialState, action) {
             return {...state, header_name: action.payload};
         case  SET_PAGE:
             return {...state, page: action.payload};
-        case  SET_PREVIOUS_PAGE:
-            return {...state, previous_page: action.payload};
         case  SET_LANGUAGE:
             switch (action.payload) {
                 case LANGUAGES[0][0]:
@@ -38,7 +43,6 @@ export function tittle_reducer(state = initialState, action) {
                 default:
                     return {...state, values: english_language};
             }
-            break;
         default:
             return state
     }

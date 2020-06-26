@@ -9,7 +9,7 @@ import {
     Badge,
     Text
 } from 'native-base';
-import {set_page, set_page_tittle,set_previous_page} from '../actions/tittle_manager';
+import {set_page, set_page_tittle} from '../actions/tittle_manager';
 import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
 import LoginPage from '../containers/LoginPage';
@@ -17,16 +17,15 @@ import ReservationPage from '../containers/ReservationPage';
 import { LOGIN, MAIN_PAGE, RESERVATION, SETTINGS} from '../store/values/app_values';
 import {StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
+import {set_prev_page} from '../store/reducers/tittle_reducer';
 
 class AppFooter extends Component {
     constructor(props){
         super(props);
     }
 
-    switch_page(page, name, header, prev_page){
-        if (name !== header){
-            this.props.set_previous_page(prev_page)
-        }
+    switch_page(page, name, previous_page, prev_page){
+        set_prev_page(prev_page);
         switch (page) {
             case SETTINGS:
                 this.props.set_page_tittle(name);
@@ -55,22 +54,22 @@ class AppFooter extends Component {
                 <Footer style={styles.container}>
                     <FooterTab>
                         <Button onPress={() => {
-                            this.switch_page(SETTINGS, page.values.header.tittle.settings, page.header_name, page.page)
+                            this.switch_page(SETTINGS, page.values.header.tittle.settings, page.previous_page, page.page)
                         }}>
                             <Icon style={styles.icon} name='settings'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(MAIN_PAGE, page.values.header.tittle.cafe, page.header_name, page.page)
+                            this.switch_page(MAIN_PAGE, page.values.header.tittle.cafe, page.previous_page, page.page)
                         }}>
                             <Icon style={styles.icon} name='ios-grid'/>
                         </Button>
                         <Button onPress={() => {
-                            this.switch_page(RESERVATION, page.values.header.tittle.reservation, page.header_name, page.page)
+                            this.switch_page(RESERVATION, page.values.header.tittle.reservation, page.previous_page, page.page)
                         }}>
                             <Icon style={styles.icon} name='ios-today'/>
                         </Button>
                         <Button badge vertical onPress={() => {
-                            this.switch_page(LOGIN, page.values.header.tittle.login, page.header_name, page.page)
+                            this.switch_page(LOGIN, page.values.header.tittle.login, page.previous_page, page.page)
                         }}>
                             {user.reservation ?
                                 <Badge>
@@ -99,7 +98,6 @@ const mapDispatchToProps = dispatch =>{
     return{
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
         set_page: page => dispatch(set_page(page)),
-        set_previous_page: page => dispatch(set_previous_page(page)),
     }
 };
 

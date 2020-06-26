@@ -18,14 +18,13 @@ import {LOGIN, REGISTRATION, USER} from '../store/values/app_values';
 import RegistrationPage from '../containers/RegistrationPage';
 import UserPage from '../containers/UserPage';
 import LoginPage from '../containers/LoginPage';
-import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {set_page, set_page_tittle} from '../actions/tittle_manager';
 import {authorization} from '../actions/user_actions';
+import {set_prev_page} from '../store/reducers/tittle_reducer';
 
 class LoginForm extends Component {
-    switch_page(page, name, header, prev_page){
-        if (name !== header){
-            this.props.set_previous_page(prev_page)
-        }
+    switch_page(page, name, previous_page, prev_page){
+        set_prev_page(prev_page);
         switch (page) {
             case REGISTRATION:
                 this.props.set_page_tittle(name);
@@ -116,7 +115,7 @@ class LoginForm extends Component {
                             <Button style={styles.button} onPress={() => {
                                 this.checkData(this.state.login, this.state.password, page.values.login_page.notification);
                                 if(page.authorized) {
-                                    this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page);
+                                    this.switch_page(USER, page.values.header.tittle.user, page.previous_page, page.page);
                                 }
                             }}>
                                 <Text style={styles.text_button}>{String(page.values.login_page.form.login)}</Text>
@@ -125,7 +124,7 @@ class LoginForm extends Component {
                         <View style={{flex: 1, flexBasis: 20}}/>
                         <View style={styles.element}>
                             <Button style={styles.button} onPress={() =>
-                                this.switch_page(REGISTRATION, page.values.header.tittle.register, page.header_name, page.page)
+                                this.switch_page(REGISTRATION, page.values.header.tittle.register, page.previous_page, page.page)
                             }>
                                 <Text style={styles.text_button}>{String(page.values.login_page.form.registration)}</Text>
                             </Button>
@@ -251,7 +250,6 @@ const mapDispatchToProps = dispatch =>{
     return{
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
         set_page: page => dispatch(set_page(page)),
-        set_previous_page: page => dispatch(set_previous_page(page)),
         authorization: info => dispatch(authorization(info)),
     }
 };

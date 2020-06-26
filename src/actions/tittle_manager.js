@@ -4,6 +4,8 @@ import LoginPage from '../containers/LoginPage';
 import MenuPage from '../containers/MenuPage';
 import SettingsPage from '../containers/SettingsPage';
 import StartPage from '../containers/StartPage';
+import RegistrationPage from '../containers/RegistrationPage';
+import UserPage from '../containers/UserPage';
 
 export const SET_PAGE_TITTLE = 'SET_PAGE_TITTLE';
 export const SET_PAGE = 'SET_PAGE';
@@ -20,13 +22,6 @@ export function set_page_tittle(tittle) {
 export function set_page(page) {
     return{
         type: SET_PAGE,
-        payload: page
-    }
-}
-
-export function set_previous_page(page) {
-    return{
-        type: SET_PREVIOUS_PAGE,
         payload: page
     }
 }
@@ -50,8 +45,12 @@ export function get_title(page){
             return app_values.header.tittle.settings;
         case StartPage:
             return app_values.header.tittle.cafe;
+        case RegistrationPage:
+            return app_values.header.tittle.register;
+        case UserPage:
+            return app_values.header.tittle.user;
         default:
-
+            return app_values.header.tittle.cafe;
     }
 
 }

@@ -18,8 +18,9 @@ import {CITIES} from '../store/values/settings_values';
 import {set_default_city} from '../actions/settings_manager';
 import {AppStyle} from '../store/values/app_style';
 import {registration} from '../actions/user_actions';
-import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {set_page, set_page_tittle} from '../actions/tittle_manager';
 import UserPage from '../containers/UserPage';
+import {set_prev_page} from '../store/reducers/tittle_reducer';
 
 class RegistrationForm extends Component {
     constructor(props){
@@ -139,7 +140,7 @@ class RegistrationForm extends Component {
                                     this.state.password, this.state.repeat_password, this.state.phone_number,
                                     this.state.city, page.values.registration_page.notification);
                                 if(page.authorized) {
-                                    this.props.set_previous_page(page.page);
+                                    set_prev_page(page.page);
                                     this.props.set_page_tittle(page.values.header.tittle.user);
                                     this.props.set_page(UserPage);
                                 }
@@ -218,7 +219,6 @@ const mapDispatchToProps = dispatch => {
         registration: info => dispatch(registration(info)),
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
         set_page: page => dispatch(set_page(page)),
-        set_previous_page: page => dispatch(set_previous_page(page)),
     }
 };
 

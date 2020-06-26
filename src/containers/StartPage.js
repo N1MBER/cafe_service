@@ -18,8 +18,9 @@ import {
     Image
 } from 'react-native';
 import {AppStyle} from '../store/values/app_style';
-import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {set_page, set_page_tittle} from '../actions/tittle_manager';
 import MenuPage from './MenuPage';
+import {set_prev_page} from '../store/reducers/tittle_reducer';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -80,7 +81,7 @@ class StartPage extends Component {
                     <Button style={styles.menu_button} onPress={() => {
                         this.props.set_page_tittle(page.values.header.tittle.menu);
                         this.props.set_page(MenuPage);
-                        this.props.set_previous_page(StartPage)
+                        set_prev_page(StartPage)
                     }}>
                         <Text style={styles.menu_button_text}>{page.values.start_page.our_menu}</Text>
                     </Button>
@@ -235,7 +236,6 @@ const mapDispatchToProps = dispatch =>{
     return{
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
         set_page: page => dispatch(set_page(page)),
-        set_previous_page: page => dispatch(set_previous_page(page)),
     }
 };
 

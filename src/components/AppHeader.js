@@ -8,7 +8,8 @@ import {
 } from 'native-base';
 import {Dimensions, StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
-import {get_title, set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import {get_title, set_page, set_page_tittle} from '../actions/tittle_manager';
+import {get_prev_page} from '../store/reducers/tittle_reducer';
 
 class AppHeader extends Component {
     constructor(props){
@@ -20,13 +21,18 @@ class AppHeader extends Component {
         return (
             <View>
                 <Header style={styles.container} >
-                    <Left >
-                        <Button transparent onPress={() => {
-                            this.props.set_page(page.previous_page);
-                            this.props.set_page_tittle(get_title(page.previous_page))
-                        }}>
-                            <Icon style={styles.icon} name='arrow-back' />
-                        </Button>
+                    <Left>
+                        {page.previous_page.length !== 0 ?
+                            <Button transparent onPress={() => {
+                                if (page.previous_page.length !== 0) {
+                                    let Prev_page = get_prev_page();
+                                    this.props.set_page(Prev_page);
+                                    this.props.set_page_tittle(get_title(Prev_page))
+                                }
+                            }}>
+                                <Icon style={styles.icon} name='arrow-back'/>
+                            </Button>:null
+                        }
                     </Left>
                     <Body>
                         <Title style={styles.text}>{page.header_name}</Title>
@@ -70,7 +76,6 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch =>{
     return{
-        set_previous_page: page => dispatch(set_previous_page(page)),
         set_page: page => dispatch(set_page(page)),
         set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
     }

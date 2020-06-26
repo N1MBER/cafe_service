@@ -17,7 +17,7 @@ import {
     set_new_position_notification,
     set_reservation_notification,
 } from '../actions/settings_manager';
-import {StyleSheet, Linking,Alert} from 'react-native';
+import {StyleSheet, Linking} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {set_reservation_city} from '../actions/user_actions';
 import {set_page_lang} from '../actions/tittle_manager';
@@ -66,7 +66,7 @@ class SettingsPage extends Component {
                                 cancelButtonIndex: CITIES.length - 1
                             },
                                 buttonIndex => {
-                                if(buttonIndex != CITIES.length - 1)
+                                if(buttonIndex !== CITIES.length - 1)
                                     this.props.set_default_city( CITIES[buttonIndex] );
                                     this.props.set_reservation_city(CITIES[buttonIndex])
                                 }
@@ -94,7 +94,7 @@ class SettingsPage extends Component {
                                         cancelButtonIndex: LANGUAGES[0].length - 1
                                     },
                                     buttonIndex => {
-                                        if(buttonIndex != LANGUAGES[0].length - 1) {
+                                        if(buttonIndex !== LANGUAGES[0].length - 1) {
                                             this.props.set_language(LANGUAGES[0][buttonIndex]);
                                             this.props.set_page_lang(LANGUAGES[0][buttonIndex]);
                                         }

@@ -20,6 +20,7 @@ import UserPage from '../containers/UserPage';
 import LoginPage from '../containers/LoginPage';
 import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
 import {authorization} from '../actions/user_actions';
+
 class LoginForm extends Component {
     switch_page(page, name, header, prev_page){
         if (name !== header){
@@ -49,7 +50,7 @@ class LoginForm extends Component {
     setLogin(login){
         this.setState({
             login: login
-        })
+        });
     }
 
     checkData(login, password, notification){
@@ -114,7 +115,9 @@ class LoginForm extends Component {
                         <View style={styles.element}>
                             <Button style={styles.button} onPress={() => {
                                 this.checkData(this.state.login, this.state.password, page.values.login_page.notification);
-                                this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page);
+                                if(page.authorized) {
+                                    this.switch_page(USER, page.values.header.tittle.user, page.header_name, page.page);
+                                }
                             }}>
                                 <Text style={styles.text_button}>{String(page.values.login_page.form.login)}</Text>
                             </Button>

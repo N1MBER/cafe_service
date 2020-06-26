@@ -7,7 +7,6 @@ import StartPage from '../../containers/StartPage';
 import {app_values} from '../values/app_values';
 import {english_language} from '../values/Localization/english_language';
 import {SET_LANGUAGE} from '../../actions/settings_manager';
-import {russian_language} from '../values/Localization/russian_language';
 import {LANGUAGES} from '../values/settings_values';
 
 

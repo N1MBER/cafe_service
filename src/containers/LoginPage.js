@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import {
     View,
-    Image,
     StyleSheet,
-    Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import LoginForm from '../components/LoginForm';
 import {AppStyle} from '../store/values/app_style';
 import {Icon} from 'native-base'
+
 class LoginPage extends Component {
     render() {
-        const {page} = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.inside_container}>

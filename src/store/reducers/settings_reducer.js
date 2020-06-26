@@ -1,9 +1,3 @@
-import {
-    SET_PAGE,
-    SET_PAGE_TITTLE
-} from '../../actions/tittle_manager';
-import StartPage from '../../containers/StartPage';
-import {app_values} from '../values/app_values';
 import {settings_values} from '../values/settings_values';
 import {
     NEW_POSITION_NOTIFICATION,

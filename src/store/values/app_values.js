@@ -2,8 +2,6 @@ export const SETTINGS = 'SETTINGS';
 export const RESERVATION = 'RESERVATION';
 export const LOGIN = 'LOGIN';
 export const MAIN_PAGE = 'MAIN_PAGE';
-export const LOCATION = 'LOCATION';
-export const MENU = 'MENU';
 export const REGISTRATION ='REGISTRATION';
 export const USER = 'USER';
 

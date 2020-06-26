@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import {
     View,
-    Image,
     StyleSheet,
     Dimensions
 } from 'react-native';
 import {connect} from 'react-redux';
-import LoginForm from '../components/LoginForm';
 import {AppStyle} from '../store/values/app_style';
 import {Icon} from 'native-base'
 import RegistrationForm from '../components/RegistrationForm';
+
 class RegistrationPage extends Component {
     render() {
-        const {page} = this.props;
         return (
             <View style={styles.container}>
                 <Icon style={styles.logo} name={'logo-ionitron'}/>

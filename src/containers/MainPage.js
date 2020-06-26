@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container,
+    Content,
+} from 'native-base';
 import AppFooter from '../components/AppFooter';
 import {View} from 'native-base';
 import {connect} from 'react-redux';

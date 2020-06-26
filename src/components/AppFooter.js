@@ -24,7 +24,7 @@ class AppFooter extends Component {
     }
 
     switch_page(page, name, header, prev_page){
-        if (name != header){
+        if (name !== header){
             this.props.set_previous_page(prev_page)
         }
         switch (page) {

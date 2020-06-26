@@ -6,11 +6,9 @@ import {
     Button,
     Icon, Left, Body, Title, Right,
 } from 'native-base';
-import LinearGradient from 'react-native-linear-gradient';
 import {Dimensions, StyleSheet} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {get_title, set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
-import MenuPage from '../containers/MenuPage';
 
 class AppHeader extends Component {
     constructor(props){

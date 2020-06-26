@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
     View,
-    Image,
     StyleSheet,
     Text
 } from 'react-native';
@@ -30,7 +29,7 @@ class MenuPage extends Component {
                                     <Icon name={ICONS[key]} style={styles.title_icon}/>
                                     <Text key={key} style={styles.title_text}> { item } </Text>
                                 </ListItem>
-                                {page.values.menu.menu[key] != undefined ?
+                                {page.values.menu.menu[key] !== undefined ?
                                     page.values.menu.menu[key].map((element, op)=>(
                                             <ListItem style={styles.content}>
                                                 <Icon name={'ios-color-filter'} style={styles.content_icon}/>

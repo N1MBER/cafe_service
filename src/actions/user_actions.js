@@ -21,8 +21,8 @@ export function authorization(user_info) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user_info)
-        }).then(result => {
-                if (result.status == 200) {
+        }).then(response => {
+                if (response.status == 200) {
                     dispatch({
                         type: AUTHORIZATION,
                         payload: true,
@@ -33,15 +33,15 @@ export function authorization(user_info) {
                     });
                     dispatch({
                         type: SET_EMAIL,
-                        payload: result.email,
+                        payload: response.email,
                     });
                     dispatch({
                         type: SET_PHONE_NUMBER,
-                        payload: result.phone_number,
+                        payload: response.phone_number,
                     });
                     dispatch({
                         type: SET_NAME,
-                        payload: result.name,
+                        payload: response.name,
                     });
                 } else {
                     dispatch({
@@ -50,8 +50,8 @@ export function authorization(user_info) {
                     });
                 }
             }
-        ).catch(result => {
-            alert(result);
+        ).catch(response => {
+            alert(response);
             dispatch({
                 type: AUTHORIZATION,
                 payload: false,

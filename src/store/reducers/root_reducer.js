@@ -1,8 +1,4 @@
-import { combineReducers } from 'redux'
-// import { pageReducer } from './page'
-// import { userReducer } from './user'
-// import { headerReducer} from "./header";
-import {style_reducer} from "./style_reducer";
+import { combineReducers } from 'redux';
 import {tittle_reducer} from './tittle_reducer';
 import {settings_reducer} from './settings_reducer';
 import {user_reducer} from './user_reducer';

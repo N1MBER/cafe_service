@@ -13,12 +13,14 @@ import {
     StyleSheet,
     Dimensions,
 } from 'react-native';
-
 import {connect} from 'react-redux';
 import {CITIES} from '../store/values/settings_values';
 import {set_default_city} from '../actions/settings_manager';
 import {AppStyle} from '../store/values/app_style';
 import {registration} from '../actions/user_actions';
+import {set_page, set_page_tittle, set_previous_page} from '../actions/tittle_manager';
+import UserPage from '../containers/UserPage';
+
 class RegistrationForm extends Component {
     constructor(props){
         super(props);
@@ -132,9 +134,17 @@ class RegistrationForm extends Component {
                             </Button>
                         </Root>
                         <View >
-                            <Button style={styles.button_register} onPress={() => this.check_data(this.state.email,
-                                this.state.password, this.state.repeat_password, this.state.phone_number,
-                                this.state.city, page.values.registration_page.notification)}>
+                            <Button style={styles.button_register} onPress={() => {
+                                this.check_data(this.state.email,
+                                    this.state.password, this.state.repeat_password, this.state.phone_number,
+                                    this.state.city, page.values.registration_page.notification);
+                                if(page.authorized) {
+                                    this.props.set_previous_page(page.page);
+                                    this.props.set_page_tittle(page.values.header.tittle.user);
+                                    this.props.set_page(UserPage);
+                                }
+                            }
+                            }>
                                 <Text style={styles.text_button}>{page.values.registration_page.form.registration}</Text>
                             </Button>
                         </View>
@@ -186,7 +196,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     input_container:{
-        // width: windowWidth,
         paddingTop: 10,
         paddingBottom: 10
     },
@@ -206,7 +215,10 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return{
         set_default_city: city => dispatch(set_default_city(city)),
-        registration: info => dispatch(registration(info))
+        registration: info => dispatch(registration(info)),
+        set_page_tittle: tittle => dispatch(set_page_tittle(tittle)),
+        set_page: page => dispatch(set_page(page)),
+        set_previous_page: page => dispatch(set_previous_page(page)),
     }
 };
 

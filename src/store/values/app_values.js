@@ -5,7 +5,29 @@ export const MAIN_PAGE = 'MAIN_PAGE';
 export const REGISTRATION ='REGISTRATION';
 export const USER = 'USER';
 
+export const main_page_image = [
+    {
+        text: 'Our coffee house',
+        name: 'Saint-Petersburg',
+        image: {uri: 'https://www.restorating.ru/upload/images/2018/02/16/pub/y1p43anahtk-1.jpg'},
+    },
+    {
+        text: 'Our coffee house',
+        name: 'Moscow',
+        image: {uri: 'https://www.2do2go.ru/uploads/e3542131e95fac0101096f2378bb34e0_w800_h485.jpg'},
+    },
+    {
+        text: 'Our coffee house',
+        name: 'Ivanovo',
+        image: {uri: 'https://media-cdn.tripadvisor.com/media/photo-s/10/06/0b/0b/caption.jpg'},
+    },
+    {
+        text: 'Our coffee house',
+        name: 'Kazan\'',
+        image: {uri: 'https://media-cdn.tripadvisor.com/media/photo-s/14/3e/86/54/caption.jpg'},
+    },
 
+];
 
 export const app_values = {
     header:{

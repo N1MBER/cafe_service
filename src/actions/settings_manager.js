@@ -1,19 +1,67 @@
+import {AUTHORIZATION, SET_EMAIL, SET_LOGIN, SET_NAME, SET_PHONE_NUMBER} from './user_actions';
+
 export const SET_DEFAULT_CITY = 'SET_DEFAULT_CITY';
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const RESERVATION_NOTIFICATION = 'RESERVATION_NOTIFICATION';
 export const NEW_POSITION_NOTIFICATION = 'NEW_POSITION_NOTIFICATION';
 
-export function set_reservation_notification(value) {
-    return{
-        type: RESERVATION_NOTIFICATION,
-        payload: value
+export function send_reservation_notification(value) {
+    return dispatch => {
+        fetch('http://localhost:8080/reservation_notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(value)
+        }).then(result => {
+                if (result.status == 200) {
+                    dispatch({
+                        type: RESERVATION_NOTIFICATION,
+                        payload: !value.flag,
+                    });
+                } else {
+                    dispatch({
+                        type: RESERVATION_NOTIFICATION,
+                        payload: !value.flag,
+                    });
+                }
+            }
+        ).catch(
+            dispatch({
+                type: RESERVATION_NOTIFICATION,
+                payload: !value.flag,
+            })
+        );
     }
 }
 
-export function set_new_position_notification(value) {
-    return{
-        type: NEW_POSITION_NOTIFICATION,
-        payload: value
+export function send_new_reservation_notification(value) {
+    return dispatch => {
+        fetch('http://localhost:8080/new_reservation_notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(value)
+        }).then(result => {
+                if (result.status == 200) {
+                    dispatch({
+                        type: NEW_POSITION_NOTIFICATION,
+                        payload: !value.flag,
+                    });
+                } else {
+                    dispatch({
+                        type: NEW_POSITION_NOTIFICATION,
+                        payload: !value.flag,
+                    });
+                }
+            }
+        ).catch(
+            dispatch({
+                type: NEW_POSITION_NOTIFICATION,
+                payload: !value.flag,
+            })
+        );
     }
 }
 

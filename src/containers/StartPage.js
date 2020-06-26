@@ -21,26 +21,9 @@ import {AppStyle} from '../store/values/app_style';
 import {set_page, set_page_tittle} from '../actions/tittle_manager';
 import MenuPage from './MenuPage';
 import {set_prev_page} from '../store/reducers/tittle_reducer';
+import {main_page_image} from '../store/values/app_values';
 
 const windowWidth = Dimensions.get('window').width;
-
-const cards = [
-    {
-        text: 'Card One',
-        name: 'One',
-        image: require('../images/icons/user.png'),
-    },
-    {
-        text: 'Card Two',
-        name: 'Two',
-        image: require('../images/icons/user.png'),
-    },
-    {
-        text: 'Card Three',
-        name: 'Three',
-        image: require('../images/icons/user.png'),
-    },
-];
 
 class StartPage extends Component {
     render() {
@@ -54,7 +37,7 @@ class StartPage extends Component {
                 </View>
                 <View style={styles.image_container}>
                     <DeckSwiper
-                        dataSource={cards}
+                        dataSource={main_page_image}
                         renderItem={item =>
                             <Card style={styles.deck_swiper}>
                                 <CardItem style={styles.card_title}>

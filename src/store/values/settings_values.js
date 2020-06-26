@@ -11,6 +11,7 @@ export const settings_values = {
 };
 export const CITIES = ['None','Saint-Petersburg','Moscow','Ivanovo','Kazan','Cancel'];
 
+
 export const PLACES = [
     [],
     ['Nevskiy prospect', 'Moskovskiy prospect', 'Birzhevaja street'],

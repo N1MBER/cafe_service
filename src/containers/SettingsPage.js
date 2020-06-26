@@ -14,8 +14,8 @@ import {CITIES, LANGUAGES} from '../store/values/settings_values';
 import {
     set_default_city,
     set_language,
-    set_new_position_notification,
-    set_reservation_notification,
+    send_new_reservation_notification,
+    send_reservation_notification
 } from '../actions/settings_manager';
 import {StyleSheet, Linking} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
@@ -23,7 +23,7 @@ import {set_reservation_city} from '../actions/user_actions';
 import {set_page_lang} from '../actions/tittle_manager';
 class SettingsPage extends Component {
     render() {
-        const {page, settings} = this.props;
+        const {user, page, settings} = this.props;
 
         return (
             <View style={styles.container}>
@@ -36,7 +36,14 @@ class SettingsPage extends Component {
                     <View>
                         <ListItem>
                             <CheckBox onPress={()=> {
-                                this.props.set_reservation_notification(!Boolean(settings.reservation_notification))
+                                if (user.authorized) {
+                                    let value = {
+                                        email: user.email,
+                                        phone_number: user.phone_number,
+                                        flag: !Boolean(settings.reservation_notification)
+                                    };
+                                    this.props.send_reservation_notification(value);
+                                }
                             }} checked={settings.reservation_notification}/>
                             <Body>
                                 <Text style={styles.text} >{page.values.settings_page.reservation_notification}</Text>
@@ -44,7 +51,14 @@ class SettingsPage extends Component {
                         </ListItem>
                         <ListItem>
                             <CheckBox onPress={()=> {
-                                this.props.set_new_position_notification(!Boolean(settings.new_position_notification))
+                                if (user.authorized) {
+                                    let value = {
+                                        email: user.email,
+                                        phone_number: user.phone_number,
+                                        flag: !Boolean(settings.reservation_notification)
+                                    };
+                                    this.props.send_new_reservation_notification(value);
+                                }
                             }} checked={settings.new_position_notification}/>
                             <Body>
                                 <Text style={styles.text} >{page.values.settings_page.new_position_notification}</Text>
@@ -194,6 +208,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = store => {
     return {
+        user: store.user,
         page: store.page,
         settings: store.settings
     }
@@ -204,8 +219,8 @@ const mapDispatchToProps = dispatch =>{
         set_default_city: city => dispatch(set_default_city(city)),
         set_language: language => dispatch(set_language(language)),
         set_page_lang: language => dispatch(set_page_lang(language)),
-        set_new_position_notification: value => dispatch(set_new_position_notification(value)),
-        set_reservation_notification: value => dispatch(set_reservation_notification(value)),
+        send_new_reservation_notification: value => dispatch(send_new_reservation_notification(value)),
+        send_reservation_notification: value => dispatch(send_reservation_notification(value)),
         set_reservation_city: city => dispatch(set_reservation_city(city)),
     }
 };

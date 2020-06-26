@@ -14,8 +14,6 @@ import MenuPage from './MenuPage';
 import RegistrationPage from './RegistrationPage';
 import UserPage from './UserPage';
 
-
-
 class MainPage extends Component {
     render() {
         const { page} = this.props;

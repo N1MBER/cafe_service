@@ -1,5 +1,8 @@
 export const drinks ={}
 
+//=========
+// ENGLISH
+//=========
 export const ENG_MENU = [
     //========
     // COFFEE
@@ -38,6 +41,9 @@ export const ENG_MENU = [
 
 export const ENG_POSITION = ['COFFEE','TEA','DESSERT','MINI BITES'];
 
+//=========
+// RUSSIAN
+//=========
 export const RUS_MENU = [
     //========
     // COFFEE
@@ -76,6 +82,9 @@ export const RUS_MENU = [
 
 export const RUS_POSITION = ['КОФЕ','ЧАЙ','ДЕССЕРТЫ','ЗАКУСКИ'];
 
+//=========
+// CHINESE
+//=========
 export const CHIN_MENU = [
     //========
     // COFFEE
@@ -114,6 +123,9 @@ export const CHIN_MENU = [
 
 export const CHIN_POSITION = ['咖啡','茶','甜点','零食'];
 
+//========
+// GERMAN
+//========
 export const GER_MENU = [
     //========
     // COFFEE

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Content,
     Item,
-    Label,
-    Input,
     Form,
     Button,
     Root,
@@ -21,6 +18,7 @@ import {connect} from 'react-redux';
 import {CITIES} from '../store/values/settings_values';
 import {set_default_city} from '../actions/settings_manager';
 import {AppStyle} from '../store/values/app_style';
+import {registration} from '../actions/user_actions';
 class RegistrationForm extends Component {
     constructor(props){
         super(props);
@@ -55,6 +53,15 @@ class RegistrationForm extends Component {
             flag = false;
             alert(notification.default_city);
             return false;
+        }
+        if (flag){
+            let user_info = {
+                email: email,
+                password: password,
+                phone_number: phone_number,
+                city: city
+            };
+            this.props.registration(user_info)
         }
     }
 
@@ -186,8 +193,6 @@ const styles = StyleSheet.create({
     input_field: {
         fontSize: 24,
         color: AppStyle.colors.white,
-        // marginLeft: 15,
-        // marginRight: 15,
         paddingTop: 10
     },
 });
@@ -201,6 +206,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
     return{
         set_default_city: city => dispatch(set_default_city(city)),
+        registration: info => dispatch(registration(info))
     }
 };
 

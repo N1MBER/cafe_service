@@ -31,6 +31,65 @@ export function authorization(user_info) {
                         type: SET_LOGIN,
                         payload: user_info.login,
                     });
+                    dispatch({
+                        type: SET_EMAIL,
+                        payload: result.email,
+                    });
+                    dispatch({
+                        type: SET_PHONE_NUMBER,
+                        payload: result.phone_number,
+                    });
+                    dispatch({
+                        type: SET_NAME,
+                        payload: result.name,
+                    });
+                } else {
+                    dispatch({
+                        type: AUTHORIZATION,
+                        payload: false,
+                    });
+                }
+            }
+        ).catch(result => {
+            alert(result);
+            dispatch({
+                type: AUTHORIZATION,
+                payload: false,
+            });
+        });
+    }
+}
+
+export function registration(user_info) {
+    return dispatch => {
+        fetch('http://localhost:8080/registration',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user_info)
+        }).then(result => {
+                if (result.status == 200) {
+                    dispatch({
+                        type: AUTHORIZATION,
+                        payload: true,
+                    });
+                    dispatch({
+                        type: SET_LOGIN,
+                        payload: user_info.login,
+                    });
+                    dispatch({
+                        type: SET_EMAIL,
+                        payload: user_info.email,
+                    });
+                    dispatch({
+                        type: SET_PHONE_NUMBER,
+                        payload: user_info.phone_number,
+                    });
+                    dispatch({
+                        type: SET_NAME,
+                        payload: user_info.name,
+                    });
                 } else {
                     dispatch({
                         type: AUTHORIZATION,
@@ -95,40 +154,5 @@ export function set_reservation_time(time) {
     return{
         type: SET_RESERVATION_TIME,
         payload: time
-    }
-}
-
-export function set_reservation(flag) {
-    return{
-        type: SET_RESERVATION,
-        payload: flag
-    }
-}
-
-export function set_phone_number(number) {
-    return{
-        type: SET_PHONE_NUMBER,
-        payload: number
-    }
-}
-
-export function set_email(email) {
-    return{
-        type: SET_EMAIL,
-        payload: email
-    }
-}
-
-export function set_authorization(auth) {
-    return{
-        type: SET_AUTHORIZATION,
-        payload: auth
-    }
-}
-
-export function set_name(name) {
-    return{
-        type: SET_NAME,
-        payload: name
     }
 }

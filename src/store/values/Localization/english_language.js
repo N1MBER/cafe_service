@@ -70,7 +70,8 @@ export const english_language = {
         notification:{
             name: 'The name is entered incorrectly.',
             phone_number: 'The phone number is entered incorrectly.',
-            time_and_place: 'No time or place selected.'
+            time_and_place: 'No time or place selected.',
+            reservation: 'You have already booked a place'
         },
         form:{
             contact_data: 'Contact data',

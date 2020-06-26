@@ -21,7 +21,6 @@ import {StyleSheet, Linking,Alert} from 'react-native';
 import {AppStyle} from '../store/values/app_style';
 import {set_reservation_city} from '../actions/user_actions';
 import {set_page_lang} from '../actions/tittle_manager';
-import {russian_language} from '../store/values/Localization/russian_language';
 class SettingsPage extends Component {
     render() {
         const {page, settings} = this.props;

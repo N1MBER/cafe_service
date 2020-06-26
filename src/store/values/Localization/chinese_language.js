@@ -70,7 +70,8 @@ export const chinese_language = {
         notification:{
             name: '名称输入错误',
             phone_number: '电话号码输入错误',
-            time_and_place: '未选择时间或地点'
+            time_and_place: '未选择时间或地点',
+            reservation: '您已经预订了一个地方'
         },
         form:{
             contact_data: '联络资料',

@@ -70,7 +70,8 @@ export const russian_language = {
         notification:{
             name: 'Имя введено некорректно.',
             phone_number: 'Номер телефона введено некорректно.',
-            time_and_place: 'Не указанно время или место.'
+            time_and_place: 'Не указанно время или место.',
+            reservation: 'Вы уже забронировали место.'
         },
         form:{
             contact_data: 'Контактная информация',

@@ -70,7 +70,8 @@ export const german_language = {
         notification:{
             name: 'Der Name ist falsch eingegeben',
             phone_number: 'Die Telefonnummer ist falsch eingegeben',
-            time_and_place: 'Keine Zeit oder Ort ausgewählt'
+            time_and_place: 'Keine Zeit oder Ort ausgewählt',
+            reservation: 'Sie haben bereits einen Platz gebucht'
         },
         form:{
             contact_data: 'Kontaktdaten',

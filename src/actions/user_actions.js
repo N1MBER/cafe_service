@@ -62,9 +62,9 @@ export function authorization(user_info) {
 
 export function registration(user_info) {
     return dispatch => {
-        fetch('http://localhost:8080/registration',{
+        fetch('http://localhost:8080/registration', {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user_info)
@@ -101,6 +101,54 @@ export function registration(user_info) {
             alert(result);
             dispatch({
                 type: AUTHORIZATION,
+                payload: false,
+            });
+        });
+    }
+}
+
+
+export function make_reservation(reservation_info) {
+    return dispatch => {
+        fetch('http://localhost:8080/reservation',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reservation_info)
+        }).then(result => {
+                if (result.status == 200) {
+                    dispatch({
+                        type: SET_RESERVATION,
+                        payload: true,
+                    });
+                    dispatch({
+                        type: SET_RESERVATION_CITY,
+                        payload: reservation_info.city,
+                    });
+                    dispatch({
+                        type: SET_RESERVATION_PLACE,
+                        payload: reservation_info.place,
+                    });
+                    dispatch({
+                        type: SET_RESERVATION_DATE,
+                        payload: reservation_info.reservation_date,
+                    });
+                    dispatch({
+                        type: SET_RESERVATION_TIME,
+                        payload: reservation_info.time,
+                    });
+                } else {
+                    dispatch({
+                        type: SET_RESERVATION,
+                        payload: false,
+                    });
+                }
+            }
+        ).catch(result => {
+            alert(result);
+            dispatch({
+                type: SET_RESERVATION,
                 payload: false,
             });
         });

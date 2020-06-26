@@ -19,6 +19,7 @@ import {
 import {connect} from 'react-redux';
 import {DATE_TIME} from '../store/values/app_values';
 import {
+    make_reservation,
     set_reservation_city,
     set_reservation_date, set_reservation_name, set_reservation_phone_number,
     set_reservation_place,
@@ -41,18 +42,29 @@ class ReservationPage extends Component {
     }
 
     check_data(name, number, date, time, city, place, wishes, notification){
+        let flag = true;
         if(!(!/^(-?\d+)([.,]\d+)?$/.test(name))){
+            flag = false;
             alert(notification.name);
-            return false;
         }else if(!/^(-?\d+)([.,]\d+)?$/.test(number)){
+            flag = false;
             alert(notification.phone_number);
-            return false;
         }
         else if(date === null || time == null || city === null || place === null){
+            flag = false;
             alert(notification.time_and_place);
-            return false;
         }
-        return true;
+        if (flag) {
+            let reservation_info = {
+                name: name,
+                number: number,
+                date: date,
+                time: time,
+                city: city,
+                place: place
+            };
+            this.props.make_reservation(reservation_info);
+        }
     }
 
     render() {
@@ -216,9 +228,13 @@ class ReservationPage extends Component {
                        </View>
                        <View>
                            <Button style={styles.reservation_button}  onPress={() => {
-                           this.check_data(user.reservation_name, user.reservation_phone_number,
-                           user.reservation_date, user.reservation_time, user.reservation_city,
-                           user.reservation_place, user.wishes, page.values.reservation_page.notification)}}>
+                               if(!page.reservation){
+                                   this.check_data(user.reservation_name, user.reservation_phone_number,
+                                   user.reservation_date, user.reservation_time, user.reservation_city,
+                                   user.reservation_place, user.wishes, page.values.reservation_page.notification)
+                               }else
+                                   alert(page.values.reservation_page.notification.reservation);
+                           }}>
                                <View style={styles.reservation_button_container}>
                                    <Icon style={styles.reservation_button_icon} name={'ios-clock'}/>
                                    <Text style={styles.reservation_button_text}>{page.values.reservation_page.form.make_reservation}</Text>
@@ -394,6 +410,7 @@ const mapDispatchToProps = dispatch => {
         set_reservation_name: name => dispatch(set_reservation_name(name)),
         set_reservation_phone_number:number => dispatch(set_reservation_phone_number(number)),
         set_wishes: wishes => dispatch(set_wishes(wishes)),
+        make_reservation: info => dispatch(make_reservation(info))
     }
 };
 

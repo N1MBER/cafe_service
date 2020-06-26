@@ -29,7 +29,7 @@ class UserPage extends Component {
                             <Badge danger><Text>!</Text></Badge>
                             <Text onPress={() =>
                                 alert(page.values.user_page.notification_reservation + "\n" +
-                                    user.reservation_date + " " + user.reservation_time + '\n' +
+                                    user.reservation_date.toDateString() + " " + user.reservation_time + '\n' +
                                     user.reservation_city + ' ' + user.reservation_place)}
                                   style={styles.info_title}>{page.values.user_page.booking_time}</Text>
                         </View>
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: AppStyle.colors.gray,
         fontWeight: 'bold',
+        marginBottom: 20
     },
     inside_container: {
         flexDirection: 'column',

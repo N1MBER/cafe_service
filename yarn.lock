@@ -1015,12 +1015,12 @@
     eslint-plugin-react-native "3.6.0"
     prettier "1.16.4"
 
-"@react-navigation/core@^5.11.1":
-  version "5.11.1"
-  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.11.1.tgz#c4890910ba3d6332ee6873f0adb3d3d13cf4fa4c"
-  integrity sha512-zJ/w84msKBhgRR35/tHdY1facxdnN/WP9Ebutnjp/J9ENuv7fHXhYlxX+oIRrMn+/MnbG79RVnYcO/r4lO8OTQ==
+"@react-navigation/core@^5.12.1":
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.12.1.tgz#46817ebf19ca9dc32559aaa70130c294deb3d7e0"
+  integrity sha512-/0IQ/MzsLHD1JthTPd1AwpIEWMejPksh0qAloynEwL+ILLZMq9jJF3b7T8rFxHVbsBuaM7lKOWUcULDvnOxksQ==
   dependencies:
-    "@react-navigation/routers" "^5.4.8"
+    "@react-navigation/routers" "^5.4.9"
     escape-string-regexp "^4.0.0"
     nanoid "^3.1.9"
     query-string "^6.13.1"
@@ -1035,20 +1035,28 @@
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
-"@react-navigation/native@^5.5.1":
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.6.1.tgz#a603b921f39fe3fcfcc27232d71b24e80effc1f2"
-  integrity sha512-jnSNEnuRzqLvG+7QcMthfB8eCZIzAE0Wku7HDgzfjFS2iA7Oa9ugeX/1qdP9heT2Mp0t9BDQ4XX4boJma9Z/xg==
+"@react-navigation/native@^5.6.1":
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.7.1.tgz#5a59be6f7c1bf4cdf5e16625bf59688aeab808f8"
+  integrity sha512-dhxH+CGC8YoVrjm05/gU/GeLfNpJGQO/KWyzSkEsns+nzxJ/jFZWG2uIksZym5zknJcYn9Ze7jecI7r+0SWAzA==
   dependencies:
-    "@react-navigation/core" "^5.11.1"
+    "@react-navigation/core" "^5.12.1"
     nanoid "^3.1.9"
 
-"@react-navigation/routers@^5.4.8":
-  version "5.4.8"
-  resolved "https://registry.yarnpkg.com/@react-navigation/routers/-/routers-5.4.8.tgz#b85ba06b2465bfa031d61167c078c2911219d877"
-  integrity sha512-7uxC24fgLQdRquxPfL8SZ8zjle5DXdAB56aYL13tH+HAdhO2YxjKVvulzhGUsfcZthMvZ/9psybhn+m4z71dUg==
+"@react-navigation/routers@^5.4.9":
+  version "5.4.9"
+  resolved "https://registry.yarnpkg.com/@react-navigation/routers/-/routers-5.4.9.tgz#f2f06ab6d3fc7fa8bf06d1885542cf4e0101141e"
+  integrity sha512-dYD5qrIKUmuBEp+O98hB0tDYpEsGQgCQFQgMEoFKBmVVhx2JnJJ1zxRjU7xWcCU4VdBA8IOowgHQHJsVNKYyrg==
   dependencies:
     nanoid "^3.1.9"
+
+"@react-navigation/stack@^5.6.2":
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.7.1.tgz#847b4f7087a87e01086e5e09f49111e42319abde"
+  integrity sha512-Gbzimr3ZkEpTge44J2/jkEkSKQ/R+wcHT7XPfukhItTm+p3jMD9RcqoshWJaUdWG93wDOHPm4BgbhQmuSgCLWA==
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
 
 "@types/babel__core@^7.1.0":
   version "7.1.9"
@@ -4138,9 +4146,9 @@ lodash.unescape@4.0.1:
   integrity sha1-vyJJiGzlFM2hEvrpIYzcBlIR/Jw=
 
 lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.3.0:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 log-symbols@^2.2.0:
   version "2.2.0"
